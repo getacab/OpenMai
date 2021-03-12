@@ -1,4 +1,4 @@
-package org.openmai.endpoint.beans;
+package org.openmai.beans;
 
 import java.io.Serializable;
 import java.util.Map;
