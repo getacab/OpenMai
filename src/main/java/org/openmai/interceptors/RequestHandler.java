@@ -1,5 +1,6 @@
 package org.openmai.interceptors;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,14 +13,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Component
 public class RequestHandler implements HandlerInterceptor{
 
-	@Autowired
-	private Provider<MAIRequest> maiRequest;
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("------------preHandle");
+		Cookie[] cookies = request.getCookies();
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
 
