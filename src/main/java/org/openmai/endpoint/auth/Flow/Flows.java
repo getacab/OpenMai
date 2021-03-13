@@ -1,4 +1,4 @@
-package org.openmai.endpoint.auth;
+package org.openmai.endpoint.auth.Flow;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +8,8 @@ import org.json.JSONObject;
 import org.openmai.interceptors.RequestHandler;
 import org.openmai.beans.MAIRequest;
 import org.springframework.web.bind.annotation.RestController;
+import org.openmai.endpoint.auth.Flow.FlowRegisterVerify;
+import org.openmai.endpoint.auth.Flow.FlowForgotPassword;
 
 @RestController
 
@@ -16,8 +18,8 @@ public class Flows {
 	private String envID , flowID;
     private String username , password , otp;
 
-    //private FlowForgotPassword forgotPasswordInstance = new FlowForgotPassword();
-    //private FlowRegisterVerify registerVerifyInstance = new FlowRegisterVerify();
+    private FlowForgotPassword forgotPasswordInstance = new FlowForgotPassword();
+    private FlowRegisterVerify registerVerifyInstance = new FlowRegisterVerify();
 	private RequestHandler requestHandler = new RequestHandler();	
 
     @GetMapping("/{envID}/flows/{flowID}")
@@ -38,6 +40,7 @@ public class Flows {
         JSONObject body = requestObj.body;
         String contentType = requestObj.headers.get("content-type");
         
+        //  Flow ...
         if(contentType.equals(new String("application/vnd.pingidentity.usernamePassword.check+json")))
         {
             return checkUsernamePassword(body.getString("username"), body.getString("password"));
@@ -57,7 +60,42 @@ public class Flows {
         else if(contentType.equals(new String("application/vnd.pingidentity.otp.check+json")))
         {
             return checkOtp(body.getString("otp"));
-        }else{
+        }
+        //  Forgot Password...
+        else if(contentType.equals(new String("application/vnd.pingidentity.password.forgot+json")))
+        {
+            return forgotPasswordInstance.forgotPassword(body.getString("username"));
+        }
+        else if(contentType.equals(new String("application/vnd.pingidentity.password.sendRecoveryCode+json")))
+        {
+            return forgotPasswordInstance.sendRecoveryCode();
+        }
+        else if(contentType.equals(new String("application/vnd.pingidentity.password.recover+json")))
+        {
+            return forgotPasswordInstance.recoverPassword(body.getString("recoveryCode"), body.getString("newPassword"));
+        }
+        //  Registration & Verification...
+        else if(contentType.equals(new String("application/vnd.pingidentity.user.register+json")))
+        {
+            return registerVerifyInstance.registerUser(body.getString("username"), body.getString("email"), body.getString("password"));
+        }
+        else if(contentType.equals(new String("application/vnd.pingidentity.user.sendVerificationCode+json")))
+        {
+            return registerVerifyInstance.sendVerificationCode(body.getString("verificationCode"));
+        }
+        else if(contentType.equals(new String("application/vnd.pingidentity.user.update+json")))
+        {
+            return registerVerifyInstance.userProfileUpdate(body.getString("email"), body.getJSONObject("address"));
+        }
+        else if(contentType.equals(new String("application/vnd.pingidentity.user.confirm+json")))
+        {
+            return registerVerifyInstance.confirmAccountInfo(body.getString("username"));
+        }
+        else if(contentType.equals(new String("application/vnd.pingidentity.user.verify+json")))
+        {
+            return registerVerifyInstance.verifyUser(body.getString("verificationCode"));
+        }
+        else{
             return "Invalid Arguments !";
         }
 	}
