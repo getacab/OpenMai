@@ -1,37 +1,132 @@
 package org.openmai.endpoint.auth;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.json.JSONObject;
+import org.openmai.interceptors.RequestHandler;
+import org.openmai.beans.MAIRequest;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
 public class Flows {
 
-	@GetMapping("/readFlow/{{envID}}/flows/{{flowID}}")
-	public String readFlow() {
-		return "HRHK";
-	}
-	@PostMapping("/checkUserNamePassword/{{envID}}/flows/{{flowID}}")
-	public String checkUserNamePassword() {
-		return "checkUserNamePassword";
+	private String envID , flowID;
+    private String username , password , otp;
+
+    //private FlowForgotPassword forgotPasswordInstance = new FlowForgotPassword();
+    //private FlowRegisterVerify registerVerifyInstance = new FlowRegisterVerify();
+	private RequestHandler requestHandler = new RequestHandler();	
+
+    @GetMapping("/{envID}/flows/{flowID}")
+	public String readFlow(@PathVariable String envID , @PathVariable String flowID ) {
+        
+        if(envID == null || flowID == null || envID == "" || flowID == "")
+            return "Invalid Arguments";
+
+		return "Valid Arguments !, It works";
 	}
 
-	@PostMapping("/resetPassword/{{envID}}/flows/{{flowID}}")
-	public String resetPassword() {
-		return "resetPassword";
+	//  Handler for All Post Requests...
+    @PostMapping("/{envID}/flows/{flowID}")
+    public String postFlowHandler(HttpServletRequest request) {
+
+		MAIRequest requestObj = new MAIRequest(request);
+		
+        JSONObject body = requestObj.body;
+        String contentType = requestObj.headers.get("content-type");
+        
+        if(contentType.equals(new String("application/vnd.pingidentity.usernamePassword.check+json")))
+        {
+            return checkUsernamePassword(body.getString("username"), body.getString("password"));
+        }
+        else if(contentType.equals(new String("application/vnd.pingidentity.user.lookup+json")))
+        {
+            return signOnUsername(body.getString("username"), body.getString("password"));
+        }
+        else if(contentType.equals(new String("application/vnd.pingidentity.password.reset+json")))
+        {
+            return resetPassword(body.getString("currentPassword"), body.getString("newPassword"));
+        }
+        else if(contentType.equals(new String("application/vnd.pingidentity.device.select+json")))
+        {
+            return selectDevice(body.getJSONObject("device"));
+        }
+        else if(contentType.equals(new String("application/vnd.pingidentity.otp.check+json")))
+        {
+            return checkOtp(body.getString("otp"));
+        }else{
+            return "Invalid Arguments !";
+        }
 	}
 
-	@PostMapping("/resetPassword/{{envID}}/flows/{{flowID}}")
-	public String selectDevice() {
-		return "resetPassword";
-	}
+	String checkUsernamePassword(String username , String password)
+    {
+        System.out.println(this.username + "-" + this.password);
+        if(username == null || password == null)
+            return "Invalid Credentials !";
 
-	@PostMapping("/checkOneTimePassword/{{envID}}/flows/{{flowID}}")
-	public String checkOneTimePassword() {
-		return "checkOneTimePassword";
-	}
+        if(username.equals(this.username) && password.equals(this.password))
+            return "Valid Credentials !";
+        else
+            return "Incorrect Credentials !";
+    }
 
-	
-	
+    String signOnUsername(String username , String password)
+    {
+        if(username == null || password == null)
+        {
+            return "Invalid Credentials !";
+        }
+        else
+        {
+            //  Add a new User...
+            this.username = username;
+            this.password = password;
+            
+            System.out.println(this.username + "-" + this.password);
+            return "SignOn Success !";
+        }        
+    }
+
+    String resetPassword(String currentPassword , String newPassword)
+    {
+        if(currentPassword == null || newPassword == null)
+            return "Invalid Credentials !";
+        else
+        {
+            if(this.password.equals(currentPassword))
+            {
+                this.password = newPassword;
+                return "Password Changed !";
+            }
+            else
+                return "Invalid Current password";
+        }
+    }
+
+    String selectDevice(JSONObject device)
+    {
+        System.out.println(device.getString("id"));
+        /*
+        device.entrySet().forEach(entry->{
+            System.out.println(entry.getKey() + " " + entry.getValue());  
+        });*/
+        return "Initiate Device Select !";
+    }
+
+    String checkOtp(String otp)
+    {
+        if(otp == null)
+            return "Invalid Data !";
+        else
+        {
+            if(this.otp.equals(otp))
+                return "Valid Otp !";
+            else
+                return "Invalid Otp";
+        }
+    }	
 }
