@@ -22,7 +22,10 @@ public class MAIRequest implements Serializable {
 	public Map<String, String> urlParms;
 	public JSONObject body;
 
-	public MAIRequest(HttpServletRequest request) throws IOException {
+	public MAIRequest() {
+
+	}
+	public void initilize(HttpServletRequest request) throws IOException {
 
 
         //      Headers Extraction...

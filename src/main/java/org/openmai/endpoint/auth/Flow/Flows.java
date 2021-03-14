@@ -1,7 +1,9 @@
 package org.openmai.endpoint.auth.Flow;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,9 @@ import org.openmai.endpoint.auth.Flow.FlowForgotPassword;
 
 public class Flows {
 
+    @Autowired
+	MAIRequest maiRequest;
+	
 	@GetMapping("/readFlow/{envID}/flows/{flowID}")
 	public String readFlow(@PathVariable String envID, @PathVariable String flowID) {
 		return "readFlow";
@@ -23,6 +28,7 @@ public class Flows {
 
 	@PostMapping("/checkUsernamePassword/{envID}/flows/{flowID}")
 	String checkUsernamePassword(String username, String password) {
+		System.out.println(maiRequest.body);
 		return "checkUsernamePassword";
 	}
 
