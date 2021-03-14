@@ -31,7 +31,7 @@ public class Flows {
 	@PostMapping("/checkUsernamePassword/{envID}/flows/{flowID}")
 	String checkUsernamePassword() {
 		//System.out.println(maiRequest.body);
-		//System.out.println(maiRequest.body);
+		//System.out.println("Body of json: "+maiRequest.body.getString("username"));
 		return "checkUsernamePassword";
 	}
 

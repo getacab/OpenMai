@@ -24,7 +24,24 @@ public class PingContentTypeXlation {
         command.put("application/vnd.pingidentity.user.confirm+json","confirmAccountInfo");
         command.put("application/vnd.pingidentity.user.verify+json","verifyUser");
 
+        //      Management API...       //
+        //      User...
+        command.put("application/vnd.pingidentity.user.import+json","createUserImport");
+        command.put("application/json", "Content");
+        command.put("application/vnd.pingidentity.user.verify+json", "verifyUser");
+        command.put("application/vnd.pingidentity.user.sendVerificationCode+json", "sendResendVerificationCode");
         
+        command.put("application/vnd.pingidentity.device.activate+json", "activateMFAUserDevices");
+
+        command.put("application/vnd.pingidentity.password.check+json", "passwordChecknUnlock");
+        command.put("application/vnd.pingidentity.password.sendRecoveryCode+json", "passwordRecover");
+        command.put("application/vnd.pingidentity.password.recover+json", "passwordLockedOut");
+        command.put("application/vnd.pingidentity.password.reset+json", "updatePasswordSelfnAdmin");
+        command.put("application/vnd.pingidentity.password.set+json", "updatePasswordSet");
+        
+
+
+
 	}
 	
 	public String getCommand(String _contentType) {
