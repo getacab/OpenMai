@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,8 +19,9 @@ import org.openmai.endpoint.auth.Flow.FlowForgotPassword;
 
 public class Flows {
 
-    @Autowired
-	MAIRequest maiRequest;
+	@Autowired
+    @Qualifier("maiRequest")
+	private MAIRequest maiRequest;
 	
 	@GetMapping("/readFlow/{envID}/flows/{flowID}")
 	public String readFlow(@PathVariable String envID, @PathVariable String flowID) {
@@ -27,13 +29,14 @@ public class Flows {
 	}
 
 	@PostMapping("/checkUsernamePassword/{envID}/flows/{flowID}")
-	String checkUsernamePassword(String username, String password) {
-		System.out.println(maiRequest.body);
+	String checkUsernamePassword() {
+		//System.out.println(maiRequest.body);
+		//System.out.println(maiRequest.body);
 		return "checkUsernamePassword";
 	}
 
-	@PostMapping("/signOnUsername/{envID}/flows/{flowID}")
-	String signOnUsername(String username, String password) {
+	@PostMapping("/signOnUsername/checkUsernamePassword/{envID}/flows/{flowID}")
+	String signOnUsername() {
 		return "signOnUsername";
 	}
 

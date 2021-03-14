@@ -7,15 +7,9 @@ import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-//@EnableWebMvc
 //@Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class WebConfig {
 
 
-@Bean
-@RequestScope
-public MAIRequest maiRequest() {
-    return new MAIRequest();
-}
 
 }
