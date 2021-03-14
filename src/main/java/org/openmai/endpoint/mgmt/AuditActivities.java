@@ -17,39 +17,24 @@ import org.openmai.beans.MAIRequest;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CustomDomains{
+public class AuditActivities{
     @Autowired
     @Qualifier("maiRequest")
     private MAIRequest maiRequest;
 
     //  Get...
-    @GetMapping("/environments/{envID}/customDomains")
-	public String readAllDomains() {
-		return "readAllDomains";
+    @GetMapping("/environments/{envID}/activities")
+	public String readAllActivities() {
+		return "readAllActivities";
 	}
-    @GetMapping("/environments/{envID}/customDomains/{domID}")
-	public String readOneDomains() {
-		return "readOneDomains";
+    @GetMapping("/environments/{envID}/activities/{activityID}")
+	public String readOneActivities() {
+		return "readOneActivities";
 	}
 
     //  Post..
-    @PostMapping("/environments/{envID}/customDomains")
-	String createDomains() {
-		return "createPopulations";
+    @PostMapping("/environments/{envID}/activities")
+	String getUserActivities() {
+		return "getUserActivities";
 	}
-    @PostMapping("/verifyDomains/environments/{envID}/customDomains/{domID}")
-	String verifyDomains() {
-		return "verifyDomains";
-	}
-    @PostMapping("/importCertificates/environments/{envID}/customDomains/{domID}")
-	String importCertificates() {
-		return "importCertificates";
-	}
-
-    // Delete
-    @DeleteMapping("/environments/{envID}/customDomains/{domID}")
-	String deleteDomains() {
-		return "deleteDomains";
-	}
-
 }

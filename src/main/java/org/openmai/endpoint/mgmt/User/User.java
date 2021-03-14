@@ -21,7 +21,7 @@ public class User{
 	MAIRequest maiRequest;
 	
 	@GetMapping("/{envID}/users")
-	public String readAllUser(@PathVariable String envID, @PathVariable String flowID) {
+	public String readAllUser() {
 		return "Read All User";
 	}
 

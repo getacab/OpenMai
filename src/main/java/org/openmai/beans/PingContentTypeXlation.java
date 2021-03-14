@@ -39,7 +39,9 @@ public class PingContentTypeXlation {
         command.put("application/vnd.pingidentity.password.reset+json", "updatePasswordSelfnAdmin");
         command.put("application/vnd.pingidentity.password.set+json", "updatePasswordSet");
         
-
+        //      CustomDomains...
+        command.put("application/vnd.pingidentity.domainName.verify+json", "verifyDomains");
+        command.put("application/vnd.pingidentity.certificate.import+json", "importCertificates");
 
 
 	}
