@@ -45,7 +45,7 @@ public class RequestHandler implements HandlerInterceptor{
 		String newPath = cmd.getCommand(maiRequest.headers.get("content-type"));
     	String finalPath = path.replace("ping", newPath);
     	request.getRequestDispatcher(finalPath).forward(request,response);
-    	return true;
+    	return false;
 		//return HandlerInterceptor.super.preHandle(requestWrapper, response, handler);
 	}
 

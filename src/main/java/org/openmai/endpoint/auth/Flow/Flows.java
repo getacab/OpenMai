@@ -32,22 +32,22 @@ public class Flows {
 		return "checkUsernamePassword";
 	}
 
-	@PostMapping("/signOnUsername/checkUsernamePassword/{envID}/flows/{flowID}")
+	@PostMapping("/signOnUsername/{envID}/flows/{flowID}")
 	String signOnUsername(String username, String password) {
 		return "signOnUsername";
 	}
 
-	@PostMapping("/resetPassword/checkUsernamePassword/{envID}/flows/{flowID}")
+	@PostMapping("/resetPassword/{envID}/flows/{flowID}")
 	String resetPassword() {
 		return "resetPassword";
 	}
 
-	@PostMapping("/selectDevice/checkUsernamePassword/{envID}/flows/{flowID}")
+	@PostMapping("/selectDevice/{envID}/flows/{flowID}")
 	String selectDevice(JSONObject device) {
 		return "selectDevice";
 	}
 
-	@PostMapping("/checkOtp/checkUsernamePassword/{envID}/flows/{flowID}")
+	@PostMapping("/checkOtp/{envID}/flows/{flowID}")
 	String checkOtp(String otp) {
 		return "checkOtp";
 	}

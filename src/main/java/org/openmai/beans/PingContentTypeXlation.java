@@ -9,6 +9,7 @@ public class PingContentTypeXlation {
 	
 	public PingContentTypeXlation() {
 		
+        //      Flow...
         command.put("application/vnd.pingidentity.usernamePassword.check+json","checkUsernamePassword");
         command.put("application/vnd.pingidentity.user.lookup+json","signOnUsername");
         command.put("application/vnd.pingidentity.password.reset+json","resetPassword");
@@ -22,6 +23,8 @@ public class PingContentTypeXlation {
         command.put("application/vnd.pingidentity.user.update+json","userProfileUpdate");
         command.put("application/vnd.pingidentity.user.confirm+json","confirmAccountInfo");
         command.put("application/vnd.pingidentity.user.verify+json","verifyUser");
+
+        
 	}
 	
 	public String getCommand(String _contentType) {

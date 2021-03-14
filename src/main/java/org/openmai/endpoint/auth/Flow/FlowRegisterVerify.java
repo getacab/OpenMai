@@ -14,23 +14,28 @@ public class FlowRegisterVerify
 {
     private String username , password , otp;
 
+    @PostMapping("/registerUser/{envID}/flows/{flowID}")
     public String registerUser(String username, String email , String password) {
         return "Initiate Password Recovery !";
     }
 
+    @PostMapping("/sendVerificationCode/{envID}/flows/{flowID}")
     public String sendVerificationCode(String verificationCode) {
         return "Initiate send Verification Code !";
     }
-    @PostMapping("/userProfileUpdate/checkUsernamePassword/{envID}/flows/{flowID}")
+
+    @PostMapping("/userProfileUpdate/{envID}/flows/{flowID}")
     public String userProfileUpdate(String email , JSONObject address)
     {
         return "userProfileUpdate";
     }
 
+    @PostMapping("/confirmAccountInfo/{envID}/flows/{flowID}")
     public String confirmAccountInfo(String username) {
         return "Initiate confirm Account Info !";
     }
 
+    @PostMapping("/verifyUser/{envID}/flows/{flowID}")
     public String verifyUser(String verificationCode) {
         return "Initiate Verify User !";
     }
