@@ -22,15 +22,15 @@ public class RequestHandler implements HandlerInterceptor{
 			throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("------------preHandle");
-        ContentCachingRequestWrapper requestWrapper = (ContentCachingRequestWrapper) request;
-        String path=requestWrapper.getRequestURI();
+        //ContentCachingRequestWrapper requestWrapper = (ContentCachingRequestWrapper) request;
+        String path=request.getRequestURI();
         if(!path.contains("ping")) {
         	return true;
         }
         
         
-		Cookie[] cookies = requestWrapper.getCookies();
-		MAIRequest req = new MAIRequest(requestWrapper);
+		Cookie[] cookies = request.getCookies();
+		MAIRequest req = new MAIRequest(request);
 		//System.out.println(request.getAttribute("requestDispatcherPath"));
 		//System.out.println(request.getPathInfo());
 		
@@ -38,12 +38,10 @@ public class RequestHandler implements HandlerInterceptor{
 		
 		PingContentTypeXlation cmd = new PingContentTypeXlation(); 
 		String newPath = cmd.getCommand(req.headers.get("content-type"));
-        if(path.contains("ping")) {
-        	String finalPath = path.replace("ping", newPath);
-        	request.getRequestDispatcher(finalPath).forward(requestWrapper,response);
-        	return true;
-        }
-		return HandlerInterceptor.super.preHandle(requestWrapper, response, handler);
+    	String finalPath = path.replace("ping", newPath);
+    	request.getRequestDispatcher(finalPath).forward(request,response);
+    	return false;
+		//return HandlerInterceptor.super.preHandle(requestWrapper, response, handler);
 	}
 
 	@Override

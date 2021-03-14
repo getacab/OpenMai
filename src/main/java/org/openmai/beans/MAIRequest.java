@@ -22,7 +22,7 @@ public class MAIRequest implements Serializable {
 	public Map<String, String> urlParms;
 	public JSONObject body;
 
-	public MAIRequest(ContentCachingRequestWrapper request) {
+	public MAIRequest(HttpServletRequest request) throws IOException {
 
 
         //      Headers Extraction...
@@ -54,12 +54,12 @@ public class MAIRequest implements Serializable {
         //  Body Json extraction...
         if ("POST".equalsIgnoreCase(request.getMethod())) 
         {
-            //String jsonString = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+            String jsonString = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 			//?String jsonString = new String(request.getContentAsByteArray());
 			//System.out.println("Body:");
-			//System.out.println(jsonString);
-			//?JSONObject jsonBody= new JSONObject(jsonString);
-			//?this.body = jsonBody;
+			System.out.println(jsonString);
+			JSONObject jsonBody= new JSONObject(jsonString);
+			this.body = jsonBody;
 			//System.out.println(jsonObject.getString("email"));
         }
 

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 
-@Component
+//@Component
 public class CachingRequestBodyFilter extends GenericFilterBean {
 
     @Override
