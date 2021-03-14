@@ -6,6 +6,8 @@ import javax.servlet.http.Cookie;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.util.ContentCachingRequestWrapper;
+
 import java.util.*;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +22,7 @@ public class MAIRequest implements Serializable {
 	public Map<String, String> urlParms;
 	public JSONObject body;
 
-	public MAIRequest(HttpServletRequest request) {
+	public MAIRequest(ContentCachingRequestWrapper request) {
 
 
         //      Headers Extraction...
@@ -52,18 +54,13 @@ public class MAIRequest implements Serializable {
         //  Body Json extraction...
         if ("POST".equalsIgnoreCase(request.getMethod())) 
         {
-            try {
-                String jsonString = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-                //System.out.println("Body:");
-                //System.out.println(jsonString);
-                JSONObject jsonBody= new JSONObject(jsonString);
-                this.body = jsonBody;
-                //System.out.println(jsonObject.getString("email"));
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                System.out.println("IO exception Found !");
-                e.printStackTrace();
-            }
+            //String jsonString = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+			//?String jsonString = new String(request.getContentAsByteArray());
+			//System.out.println("Body:");
+			//System.out.println(jsonString);
+			//?JSONObject jsonBody= new JSONObject(jsonString);
+			//?this.body = jsonBody;
+			//System.out.println(jsonObject.getString("email"));
         }
 
         this.headers = header;

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import java.util.*;
 
 import org.json.JSONObject;
+@RestController
 
 public class FlowRegisterVerify 
 {
@@ -20,10 +21,10 @@ public class FlowRegisterVerify
     public String sendVerificationCode(String verificationCode) {
         return "Initiate send Verification Code !";
     }
-
+    @PostMapping("/userProfileUpdate/checkUsernamePassword/{envID}/flows/{flowID}")
     public String userProfileUpdate(String email , JSONObject address)
     {
-        return "Initiate Profile Update";
+        return "userProfileUpdate";
     }
 
     public String confirmAccountInfo(String username) {

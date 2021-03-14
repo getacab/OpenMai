@@ -1,6 +1,7 @@
 package org.openmai.interceptors;
 
 import javax.servlet.http.Cookie;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.ContentCachingRequestWrapper;
+
 
 @Component
 public class RequestHandler implements HandlerInterceptor{
@@ -19,8 +22,28 @@ public class RequestHandler implements HandlerInterceptor{
 			throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("------------preHandle");
-		Cookie[] cookies = request.getCookies();
-		return HandlerInterceptor.super.preHandle(request, response, handler);
+        ContentCachingRequestWrapper requestWrapper = (ContentCachingRequestWrapper) request;
+        String path=requestWrapper.getRequestURI();
+        if(!path.contains("ping")) {
+        	return true;
+        }
+        
+        
+		Cookie[] cookies = requestWrapper.getCookies();
+		MAIRequest req = new MAIRequest(requestWrapper);
+		//System.out.println(request.getAttribute("requestDispatcherPath"));
+		//System.out.println(request.getPathInfo());
+		
+		String tmp = req.headers.get("content-type");
+		
+		PingContentTypeXlation cmd = new PingContentTypeXlation(); 
+		String newPath = cmd.getCommand(req.headers.get("content-type"));
+        if(path.contains("ping")) {
+        	String finalPath = path.replace("ping", newPath);
+        	request.getRequestDispatcher(finalPath).forward(requestWrapper,response);
+        	return true;
+        }
+		return HandlerInterceptor.super.preHandle(requestWrapper, response, handler);
 	}
 
 	@Override
