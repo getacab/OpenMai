@@ -41,8 +41,11 @@ public class PingContentTypeXlation {
         
         //      CustomDomains...
         command.put("application/vnd.pingidentity.domainName.verify+json", "verifyDomains");
-        command.put("application/vnd.pingidentity.certificate.import+json", "importCertificates");
-
+        
+        
+        //      Notifications/Email Address...
+        command.put("application/vnd.pingidentity.trustedEmail.activate+json", "activateTrustedMail");
+        command.put("application/vnd.pingidentity.trustedEmail.sendVerificationCode+json", "resendVerificationMail");
 
 	}
 	
