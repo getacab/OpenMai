@@ -11,20 +11,17 @@ import org.springframework.web.bind.annotation.RequestHeader;
 public class FlowForgotPassword 
 {
 
-    //@PostMapping("recoverPassword/{envID}/flows/{flowID}")
-    @PostMapping("/recoverPassword/{envID}/flows/{flowID}")
-    public String recoverPassword(String recoveryCode, String newPassword) {
-        return "recoverPassword";
-    }
+	@PostMapping("/forgotPassword/{{envID}}/flows/{{flowID}}")
+	public String forgotPassword() {
+		return "forgotPassword";
+	}
+	@PostMapping("/sendRecoveryCode/{{envID}}/flows/{{flowID}}")
+	public String sendRecoveryCode() {
+		return "sendRecoveryCode";
+	}
 
-    @PostMapping("/sendRecoveryCode/{envID}/flows/{flowID}")
-    public String sendRecoveryCode() {
-        return "Return a Recovery Code ! : 1235125";
-    }
-
-    @PostMapping("/forgotPassword/{envID}/flows/{flowID}")
-    public String forgotPassword(String username) 
-    {
-        return "Forgot Password needs to be added !";
-    }   
+	@PostMapping("/recoverPassword/{{envID}}/flows/{{flowID}}")
+	public String recoverPassword() {
+		return "recoverPassword";
+	}
 }
