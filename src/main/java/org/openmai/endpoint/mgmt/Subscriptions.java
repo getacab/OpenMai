@@ -17,36 +17,38 @@ import org.openmai.beans.MAIRequest;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class Subsciptions{
-    @Autowired
-    @Qualifier("maiRequest")
-    private MAIRequest maiRequest;
+public class Subscriptions {
+	@Autowired
+	@Qualifier("maiRequest")
+	private MAIRequest maiRequest;
 
-    //  Get...
-    @GetMapping("/environments/{envID}/subscriptions")
-	public String readAllSubsciption() {
-		return "readAllSubsciption";
-	}
-    @GetMapping("/environments/{envID}/subscriptions/{subscriptionID}")
-	public String readOneSubsciption() {
-		return "readOneSubsciption";
+	// PingOne-Subscriptions (webhooks) : ReadAllSubscriptions
+	@GetMapping("/environments/{{envID}}/subscriptions")
+	public String getReadAllSubscriptions() {
+		return "ReadAllSubscriptions";
 	}
 
-    //  Post..
-    @PostMapping("/environments/{envID}/subscriptions")
-	String createSubsciption() {
-		return "createSubsciption";
+	// PingOne-Subscriptions (webhooks) : ReadOneSubscription
+	@GetMapping("/environments/{{envID}}/subscriptions/{{subscriptionID}}")
+	public String getReadOneSubscription() {
+		return "ReadOneSubscription";
 	}
 
-    //  Put & Delete
-    @PutMapping("/environments/{envID}/subscriptions/{subscriptionID}")
-	String updateSubsciption() {
-		return "updateSubsciption";
+	// PingOne-Subscriptions (webhooks) : CreateSubscription
+	@PostMapping("/environments/{{envID}}/subscriptions")
+	public String postCreateSubscription() {
+		return "CreateSubscription";
 	}
 
-    @DeleteMapping("/environments/{envID}/subscriptions/{subscriptionID}")
-	String deleteSubsciption() {
-		return "deleteSubsciption";
+	// PingOne-Subscriptions (webhooks) : UpdateSubscription
+	@PutMapping("/environments/{{envID}}/subscriptions/{{subscriptionID}}")
+	public String putUpdateSubscription() {
+		return "UpdateSubscription";
 	}
 
+	// PingOne-Subscriptions (webhooks) : DeleteSubscription
+	@DeleteMapping("/environments/{{envID}}/subscriptions/{{subscriptionID}}")
+	public String deleteDeleteSubscription() {
+		return "DeleteSubscription";
+	}
 }

@@ -22,9 +22,10 @@ public class TotalIdentities{
     @Qualifier("maiRequest")
     private MAIRequest maiRequest;
 
-    @GetMapping("/environments/{envID}/totalIdentities")
-	public String readTotalIdentities() {
-		return "Read Total Identities";
-	}
+ // PingOne-Total Identities : ReadTotalIdentityCounts
+    @GetMapping("/environments/{{envID}}/totalIdentities?filter=startDate")
+     public String getReadTotalIdentityCounts(){return "ReadTotalIdentityCounts";}
 
+
+    
 }

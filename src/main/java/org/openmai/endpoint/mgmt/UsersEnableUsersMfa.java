@@ -11,27 +11,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
-public class MFASettings {
+public class UsersEnableUsersMfa {
 
 	@Autowired
 	@Qualifier("maiRequest")
 	private MAIRequest maiRequest;
 
-// PingOne-MFA Settings : GetMfaSettings
-	@GetMapping("/environments/{{envID}}/mfaSettings")
-	public String getGetMfaSettings() {
-		return "GetMfaSettings";
+	// PingOne-Users : EnableUsersMfa : ReadUserMfaEnabled
+	@GetMapping("/environments/{{envID}}/users/{{userID}}/mfaEnabled")
+	public String getReadUserMfaEnabled() {
+		return "ReadUserMfaEnabled";
 	}
 
-// PingOne-MFA Settings : UpdateMfaSettings
-	@PutMapping("/environments/{{envID}}/mfaSettings")
-	public String putUpdateMfaSettings() {
-		return "UpdateMfaSettings";
+	// PingOne-Users : EnableUsersMfa : UpdateUserMfaEnabled
+	@PutMapping("/environments/{{envID}}/users/{{userID}}/mfaEnabled")
+	public String putUpdateUserMfaEnabled() {
+		return "UpdateUserMfaEnabled";
 	}
 
-// PingOne-MFA Settings : DeleteResetMfaSettings
-	@DeleteMapping("/environments/{{envID}}/mfaSettings")
-	public String deleteDeleteResetMfaSettings() {
-		return "DeleteResetMfaSettings";
-	}
 }

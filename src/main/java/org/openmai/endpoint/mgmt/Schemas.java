@@ -17,49 +17,56 @@ import org.openmai.beans.MAIRequest;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class Schemas{
-    @Autowired
-    @Qualifier("maiRequest")
-    private MAIRequest maiRequest;
+public class Schemas {
+	@Autowired
+	@Qualifier("maiRequest")
+	private MAIRequest maiRequest;
 
-    //  Get...
-    @GetMapping("/environments/{envID}/schemas")
-	public String readAllSchemas() {
-		return "readAllSchemas";
-	}
-    @GetMapping("/environments/{envID}/schemas/{schemasID}")
-	public String readOneSchemas() {
-		return "readOneSchemas";
-	}
-    @GetMapping("/environments/{envID}/schemas/attributes")
-	public String readAllSchemasAttribute() {
-		return "readAllSchemas";
-	}
-    @GetMapping("/environments/{envID}/schemas/{schemasID}/attributes/{attributeID}")
-	public String readOneSchemasAttribute() {
-		return "readOneSchemas";
+	// PingOne-Schemas : ReadAllSchemas
+	@GetMapping("/environments/{{envID}}/schemas")
+	public String getReadAllSchemas() {
+		return "ReadAllSchemas";
 	}
 
-    //  Post
-    @PostMapping("/environments/{envID}/schemas/{schemasID}/attributes")
-	String createAttribute() {
-		return "createAttribute";
+	// PingOne-Schemas : ReadOneSchema
+	@GetMapping("/environments/{{envID}}/schemas/{{schemaID}}")
+	public String getReadOneSchema() {
+		return "ReadOneSchema";
 	}
 
-    //  Patch , Put , Delete...
-    @PatchMapping("/environments/{envID}/schemas/{schemasID}/attributes/{attributeID}")
-	String updateAttributePatch() {
-		return "updateAttributePatch";
+	// PingOne-Schemas : ReadAllSchemaAttributes
+	@GetMapping("/environments/{{envID}}/schemas/{{schemaID}}/attributes")
+	public String getReadAllSchemaAttributes() {
+		return "ReadAllSchemaAttributes";
 	}
 
-    @PutMapping("/environments/{envID}/schemas/{schemasID}/attributes/{attributeID}")
-	String updateAttributePut() {
-		return "updateAttributePut";
+	// PingOne-Schemas : CreateAttribute
+	@PostMapping("/environments/{{envID}}/schemas/{{schemaID}}/attributes")
+	public String postCreateAttribute() {
+		return "CreateAttribute";
 	}
 
-    @DeleteMapping("/environments/{envID}/schemas/{schemasID}/attributes/{attributeID}")
-	String deleteUser() {
-		return "deleteUser";
+	// PingOne-Schemas : ReadOneAttribute
+	@GetMapping("/environments/{{envID}}/schemas/{{schemaID}}/attributes/{{schemaAttrID}}")
+	public String getReadOneAttribute() {
+		return "ReadOneAttribute";
 	}
 
+	// PingOne-Schemas : UpdateAttributePatch
+	@PatchMapping("/environments/{{envID}}/schemas/{{schemaID}}/attributes/{{schemaAttrID}}")
+	public String patchUpdateAttributePatch() {
+		return "UpdateAttributePatch";
+	}
+
+	// PingOne-Schemas : UpdateAttributePut
+	@PutMapping("/environments/{{envID}}/schemas/{{schemaID}}/attributes/{{schemaAttrID}}")
+	public String putUpdateAttributePut() {
+		return "UpdateAttributePut";
+	}
+
+	// PingOne-Schemas : DeleteAttribute
+	@DeleteMapping("/environments/{{envID}}/schemas/{{schemaID}}/attributes/{{schemaAttrID}}")
+	public String deleteDeleteAttribute() {
+		return "DeleteAttribute";
+	}
 }

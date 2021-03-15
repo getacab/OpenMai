@@ -1,0 +1,895 @@
+//------------------PingOne-Active Identity Counts
+// PingOne-Active Identity Counts : ReadActiveIdentityCounts
+@GetMapping("/environments/{{envID}}/activeIdentityCounts?filter=startDate ge "2019-05-01T19:00:00Z" and samplingPeriod eq "10"&limit=10&order=-startDate")
+ public String getReadActiveIdentityCounts(){return "ReadActiveIdentityCounts";}
+//------------------PingOne-Alerting
+// PingOne-Alerting : ReadAlertchannels
+@GetMapping("/environments/{{envID}}/alertChannels")
+ public String getReadAlertchannels(){return "ReadAlertchannels";}
+// PingOne-Alerting : CreateAlertchannel
+@PostMapping("/environments{{envID}}/alertChannels")
+ public String postCreateAlertchannel(){return "CreateAlertchannel";}
+// PingOne-Alerting : UpdateAlertchannel
+@PutMapping("/environments/{{envID}}/alertChannels/{{channelID}}")
+ public String putUpdateAlertchannel(){return "UpdateAlertchannel";}
+// PingOne-Alerting : DeleteAlertchannel
+@DeleteMapping("/environments/{{envID}}/alertChannels/{{channelID}}")
+ public String deleteDeleteAlertchannel(){return "DeleteAlertchannel";}
+//------------------PingOne-ApplicationsApplications
+// PingOne-Applications : Applications : ReadAllApplications
+@GetMapping("/environments/{{envID}}/applications")
+  public String getReadAllApplications(){return "ReadAllApplications";}
+// PingOne-Applications : Applications : ReadOneApplication
+@GetMapping("/environments/{{envID}}/applications/{{appID}}")
+  public String getReadOneApplication(){return "ReadOneApplication";}
+// PingOne-Applications : Applications : CreateApplication
+@PostMapping("/environments/{{envID}}/applications")
+  public String postCreateApplication(){return "CreateApplication";}
+// PingOne-Applications : Applications : DeleteApplication
+@DeleteMapping("/environments/{{envID}}/applications/{{appID}}")
+  public String deleteDeleteApplication(){return "DeleteApplication";}
+// PingOne-Applications : Applications : CreateApplicationOidc
+@PostMapping("/environments/{{envID}}/applications")
+  public String postCreateApplicationOidc(){return "CreateApplicationOidc";}
+// PingOne-Applications : Applications : CreateApplicationSaml
+@PostMapping("/environments/{{envID}}/applications")
+  public String postCreateApplicationSaml(){return "CreateApplicationSaml";}
+// PingOne-Applications : Applications : UpdateApplicationOidc
+@PutMapping("/environments/{{envID}}/applications/{{appID}}")
+  public String putUpdateApplicationOidc(){return "UpdateApplicationOidc";}
+// PingOne-Applications : Applications : UpdateApplicationSaml
+@PutMapping("/environments/{{envID}}/applications/{{samlAppID}}")
+  public String putUpdateApplicationSaml(){return "UpdateApplicationSaml";}
+// PingOne-Applications : Applications : CreateApplicationSamlMetadataImport
+@PostMapping("https://api.pingone.com/v1/environments/{{envID}}/applications")
+  public String postCreateApplicationSamlMetadataImport(){return "CreateApplicationSamlMetadataImport";}
+// PingOne-Applications : Applications : CreateApplicationSamlUrlImport
+@PostMapping("https://api.pingone.com/v1/environments/{{envID}}/applications")
+  public String postCreateApplicationSamlUrlImport(){return "CreateApplicationSamlUrlImport";}
+//------------------PingOne-ApplicationsApplicationSecret
+// PingOne-Applications : ApplicationSecret : ReadApplicationSecret
+@GetMapping("/environments/{{envID}}/applications/{{appID}}/secret")
+  public String getReadApplicationSecret(){return "ReadApplicationSecret";}
+// PingOne-Applications : ApplicationSecret : UpdateApplicationSecret
+@PostMapping("/environments/{{envID}}/applications/{{appID}}/secret")
+  public String postUpdateApplicationSecret(){return "UpdateApplicationSecret";}
+//------------------PingOne-ApplicationsApplicationResourceGrants
+// PingOne-Applications : ApplicationResourceGrants : CreateGrant
+@PostMapping("/environments/{{envID}}/applications/{{appID}}/grants")
+  public String postCreateGrant(){return "CreateGrant";}
+// PingOne-Applications : ApplicationResourceGrants : CreateOidcGrant
+@PostMapping("/environments/{{envID}}/applications/{{appID}}/grants")
+  public String postCreateOidcGrant(){return "CreateOidcGrant";}
+// PingOne-Applications : ApplicationResourceGrants : CreatePlatformGrant
+@PostMapping("/environments/{{envID}}/applications/{{appID}}/grants")
+  public String postCreatePlatformGrant(){return "CreatePlatformGrant";}
+// PingOne-Applications : ApplicationResourceGrants : ReadAllGrantsForAnApplication
+@GetMapping("/environments/{{envID}}/applications/{{appID}}/grants")
+  public String getReadAllGrantsForAnApplication(){return "ReadAllGrantsForAnApplication";}
+// PingOne-Applications : ApplicationResourceGrants : ReadOneGrantForAnApplication
+@GetMapping("/environments/{{envID}}/applications/{{appID}}/grants/{{grantID}}")
+  public String getReadOneGrantForAnApplication(){return "ReadOneGrantForAnApplication";}
+// PingOne-Applications : ApplicationResourceGrants : UpdateGrant
+@PutMapping("/environments/{{envID}}/applications/{{appID}}/grants/{{grantID}}")
+  public String putUpdateGrant(){return "UpdateGrant";}
+// PingOne-Applications : ApplicationResourceGrants : DeleteGrant
+@DeleteMapping("/environments/{{envID}}/applications/{{appID}}/grants/{{grantID}}")
+  public String deleteDeleteGrant(){return "DeleteGrant";}
+//------------------PingOne-ApplicationsApplicationSignOnPolicyAssignments
+// PingOne-Applications : ApplicationSignOnPolicyAssignments : CreateSopAssignment
+@PostMapping("/environments/{{envID}}/applications/{{appID}}/signOnPolicyAssignments")
+  public String postCreateSopAssignment(){return "CreateSopAssignment";}
+// PingOne-Applications : ApplicationSignOnPolicyAssignments : ReadAllSopAssignments
+@GetMapping("/environments/{{envID}}/applications/{{appID}}/signOnPolicyAssignments")
+  public String getReadAllSopAssignments(){return "ReadAllSopAssignments";}
+// PingOne-Applications : ApplicationSignOnPolicyAssignments : ReadOneSopAssignment
+@GetMapping("/environments/{{envID}}/applications/{{appID}}/signOnPolicyAssignments/{{SOPAssignmentID}}")
+  public String getReadOneSopAssignment(){return "ReadOneSopAssignment";}
+// PingOne-Applications : ApplicationSignOnPolicyAssignments : UpdateSopAssignment
+@PutMapping("/environments/{{envID}}/applications/{{appID}}/signOnPolicyAssignments/{{SOPAssignmentID}}")
+  public String putUpdateSopAssignment(){return "UpdateSopAssignment";}
+// PingOne-Applications : ApplicationSignOnPolicyAssignments : DeleteSopAssignment
+@DeleteMapping("/environments/{{envID}}/applications/{{appID}}/signOnPolicyAssignments/{{SOPAssignmentID}}")
+  public String deleteDeleteSopAssignment(){return "DeleteSopAssignment";}
+//------------------PingOne-ApplicationsApplicationRoleAssignments
+// PingOne-Applications : ApplicationRoleAssignments : ReadApplicationRoleAssignments
+@GetMapping("/environments/{{envID}}/applications/{{appID}}/roleAssignments")
+  public String getReadApplicationRoleAssignments(){return "ReadApplicationRoleAssignments";}
+// PingOne-Applications : ApplicationRoleAssignments : CreateApplicationRoleAssignments
+@PostMapping("/environments/{{envID}}/applications/{{appID}}/roleAssignments")
+  public String postCreateApplicationRoleAssignments(){return "CreateApplicationRoleAssignments";}
+// PingOne-Applications : ApplicationRoleAssignments : ReadOneApplicationRoleAssignment
+@GetMapping("/environments/{{envID}}/applications/{{appID}}/roleAssignments/{{roleAssignmentID}}")
+  public String getReadOneApplicationRoleAssignment(){return "ReadOneApplicationRoleAssignment";}
+// PingOne-Applications : ApplicationRoleAssignments : DeleteApplicationRoleAssignment
+@DeleteMapping("/environments/{{envID}}/applications/{{appID}}/roleAssignments/{{roleAssignmentID}}")
+  public String deleteDeleteApplicationRoleAssignment(){return "DeleteApplicationRoleAssignment";}
+//------------------PingOne-ApplicationsApplicationAttributeMapping
+// PingOne-Applications : ApplicationAttributeMapping : CreateAttribute
+@PostMapping("/environments/{{envID}}/applications/{{appID}}/attributes")
+  public String postCreateAttribute(){return "CreateAttribute";}
+// PingOne-Applications : ApplicationAttributeMapping : ReadAllAttributes
+@GetMapping("/environments/{{envID}}/applications/{{appID}}/attributes")
+  public String getReadAllAttributes(){return "ReadAllAttributes";}
+// PingOne-Applications : ApplicationAttributeMapping : ReadOneAttribute
+@GetMapping("/environments/{{envID}}/applications/{{appID}}/attributes/{{samlAttrID}}")
+  public String getReadOneAttribute(){return "ReadOneAttribute";}
+// PingOne-Applications : ApplicationAttributeMapping : UpdateAttribute
+@PutMapping("/environments/{{envID}}/applications/{{appID}}/attributes/{{samlAttrID}}")
+  public String putUpdateAttribute(){return "UpdateAttribute";}
+// PingOne-Applications : ApplicationAttributeMapping : DeleteAttribute
+@DeleteMapping("/environments/{{envID}}/applications/{{appID}}/attributes/{{samlAttrID}}")
+  public String deleteDeleteAttribute(){return "DeleteAttribute";}
+//------------------PingOne-ApplicationsApplicationPushCredentials
+// PingOne-Applications : ApplicationPushCredentials : ReadAllCredentials
+@GetMapping("/environments/{{envID}}/applications/{{appID}}/pushCredentials")
+  public String getReadAllCredentials(){return "ReadAllCredentials";}
+// PingOne-Applications : ApplicationPushCredentials : ReadOneCredential
+@GetMapping("/environments/{{envID}}/applications/{{appID}}/pushCredentials/{{pushCredID}}")
+  public String getReadOneCredential(){return "ReadOneCredential";}
+// PingOne-Applications : ApplicationPushCredentials : DeleteCredential
+@DeleteMapping("/environments/{{envID}}/applications/{{appID}}/pushCredentials/{{pushCredID}}")
+  public String deleteDeleteCredential(){return "DeleteCredential";}
+// PingOne-Applications : ApplicationPushCredentials : CreatePushCredentialApns
+@PostMapping("/environments/{{envID}}/applications/{{appID}}/pushCredentials") 
+  public String postCreatePushCredentialApns(){return "CreatePushCredentialApns";}
+// PingOne-Applications : ApplicationPushCredentials : CreatePushCredentialFcm
+@PostMapping("/environments/{{envID}}/applications/{{appID}}/pushCredentials")
+  public String postCreatePushCredentialFcm(){return "CreatePushCredentialFcm";}
+// PingOne-Applications : ApplicationPushCredentials : UpdatePushCredential
+@PutMapping("/environments/{{envID}}/applications/{{appID}}/pushCredentials/{{pushCredID}}")
+  public String putUpdatePushCredential(){return "UpdatePushCredential";}
+//------------------PingOne-Audit Reporting
+// PingOne-Audit Reporting : GetUserActivities
+@GetMapping("/environments/{{envID}}/activities")
+ public String getGetUserActivities(){return "GetUserActivities";}
+// PingOne-Audit Reporting : GetOneUserActivity
+@GetMapping("/environments/{{envID}}/activities/{{activityID}}")
+ public String getGetOneUserActivity(){return "GetOneUserActivity";}
+//------------------PingOne-Authentications per Application
+// PingOne-Authentications per Application : ReadAuthenticationsPerApplication
+@GetMapping("/environments/{{envID}}/applicationSignons?limit=10&samplePeriod=1&samplePeriodCount=10&filter=occurredAt ge 
+"2019-06-01T00:00:00Z"")
+ public String getReadAuthenticationsPerApplication(){return "ReadAuthenticationsPerApplication";}
+//------------------PingOne-Bill of Materials
+// PingOne-Bill of Materials : ReadOneBillOfMaterials
+@GetMapping("/environments/{{envID}}/billOfMaterials")
+ public String getReadOneBillOfMaterials(){return "ReadOneBillOfMaterials";}
+// PingOne-Bill of Materials : UpdateBillOfMaterials
+@PutMapping("/environments/{{envID}}/billOfMaterials")
+ public String putUpdateBillOfMaterials(){return "UpdateBillOfMaterials";}
+//------------------PingOne-BrandingBrandingSettings
+// PingOne-Branding : BrandingSettings : ReadSettings
+@GetMapping("/environments/{{envID}}/brandingSettings")
+  public String getReadSettings(){return "ReadSettings";}
+// PingOne-Branding : BrandingSettings : UpdateSettings
+@PutMapping("/environments/{{envID}}/brandingSettings")
+  public String putUpdateSettings(){return "UpdateSettings";}
+//------------------PingOne-BrandingBrandingThemes
+// PingOne-Branding : BrandingThemes : ReadThemes
+@GetMapping("/environments/{{envID}}/themes")
+  public String getReadThemes(){return "ReadThemes";}
+// PingOne-Branding : BrandingThemes : ReadTheme
+@GetMapping("/environments/{{envID}}/themes/{{themeID}}")
+  public String getReadTheme(){return "ReadTheme";}
+// PingOne-Branding : BrandingThemes : CreateTheme
+@PostMapping("/environments/{{envID}}/themes")
+  public String postCreateTheme(){return "CreateTheme";}
+// PingOne-Branding : BrandingThemes : UpdateTheme
+@PutMapping("/environments/{{envID}}/themes/{{themeID}}")
+  public String putUpdateTheme(){return "UpdateTheme";}
+// PingOne-Branding : BrandingThemes : DeleteTheme
+@DeleteMapping("/environments/{{envID}}/themes/{{themeID}}")
+  public String deleteDeleteTheme(){return "DeleteTheme";}
+// PingOne-Branding : BrandingThemes : ReadThemeDefault
+@GetMapping("/environments/{{envID}}/themes/{{themeID}}/default")
+  public String getReadThemeDefault(){return "ReadThemeDefault";}
+// PingOne-Branding : BrandingThemes : UpdateThemeDefault
+@PutMapping("/environments/{{envID}}/themes/{{themeID}}/default")
+  public String putUpdateThemeDefault(){return "UpdateThemeDefault";}
+//------------------PingOne-Capabilities
+// PingOne-Capabilities : ReadOrganizationCapabilities
+@GetMapping("/organizations/{{orgID}}/capabilities")
+ public String getReadOrganizationCapabilities(){return "ReadOrganizationCapabilities";}
+// PingOne-Capabilities : ReadEnvironmentCapabilities
+@GetMapping("/environments/{{envID}}/capabilities")
+ public String getReadEnvironmentCapabilities(){return "ReadEnvironmentCapabilities";}
+//------------------PingOne-Certificate Management
+// PingOne-Certificate Management : GetKeys
+@GetMapping("/environments/{{envID}}/keys")
+ public String getGetKeys(){return "GetKeys";}
+// PingOne-Certificate Management : CreateKey
+@PostMapping("/environments/{{envID}}/keys")
+ public String postCreateKey(){return "CreateKey";}
+// PingOne-Certificate Management : GetKey
+@GetMapping("/environments/{{envID}}/keys/{{keyID}}")
+ public String getGetKey(){return "GetKey";}
+// PingOne-Certificate Management : UpdateKey
+@PutMapping("/environments/{{envID}}/keys/{{keyID}}")
+ public String putUpdateKey(){return "UpdateKey";}
+// PingOne-Certificate Management : CreateKeyWithPkcs12File
+@PostMapping("/environments/{{envID}}/keys")
+ public String postCreateKeyWithPkcs12File(){return "CreateKeyWithPkcs12File";}
+// PingOne-Certificate Management : GetCertificates
+@GetMapping("/environments/{{envID}}/certificates")
+ public String getGetCertificates(){return "GetCertificates";}
+// PingOne-Certificate Management : GetCertificate
+@GetMapping("/environments/{{envID}}/certificates/{{certID}}")
+ public String getGetCertificate(){return "GetCertificate";}
+// PingOne-Certificate Management : CreateCertificateWithPkcs7File
+@PostMapping("/environments/{{envID}}/certificates")
+ public String postCreateCertificateWithPkcs7File(){return "CreateCertificateWithPkcs7File";}
+//------------------PingOne-Custom Domains
+// PingOne-Custom Domains : ReadAllDomains
+@GetMapping("/environments/{{envID}}/customDomains")
+ public String getReadAllDomains(){return "ReadAllDomains";}
+// PingOne-Custom Domains : ReadOneDomain
+@GetMapping("/environments/{{envID}}/customDomains/{{domID}}")
+ public String getReadOneDomain(){return "ReadOneDomain";}
+// PingOne-Custom Domains : CreateDomain
+@PostMapping("/environments/{{envID}}/customDomains")
+ public String postCreateDomain(){return "CreateDomain";}
+// PingOne-Custom Domains : VerifyDomain
+@PostMapping("/environments/{{envID}}/customDomains/{{domID}}")
+ public String postVerifyDomain(){return "VerifyDomain";}
+// PingOne-Custom Domains : ImportCertificate
+@PostMapping("/environments/{{envID}}/customDomains/{{domID}}")
+ public String postImportCertificate(){return "ImportCertificate";}
+// PingOne-Custom Domains : DeleteDomain
+@DeleteMapping("/environments/{{envID}}/customDomains/{{domID}}")
+ public String deleteDeleteDomain(){return "DeleteDomain";}
+//------------------PingOne-Entitlements
+// PingOne-Entitlements : ReadTokenEntitlements
+@GetMapping("/entitlements")
+ public String getReadTokenEntitlements(){return "ReadTokenEntitlements";}
+//------------------PingOne-Environments
+// PingOne-Environments : CreateEnvironment
+@PostMapping("/environments")
+ public String postCreateEnvironment(){return "CreateEnvironment";}
+// PingOne-Environments : ReadAllEnvironments
+@GetMapping("/environments")
+ public String getReadAllEnvironments(){return "ReadAllEnvironments";}
+// PingOne-Environments : ReadOneEnvironment
+@GetMapping("/environments/{{envID}}")
+ public String getReadOneEnvironment(){return "ReadOneEnvironment";}
+// PingOne-Environments : UpdateEnvironment
+@PutMapping("/environments/{{envID}}")
+ public String putUpdateEnvironment(){return "UpdateEnvironment";}
+// PingOne-Environments : UpdateEnvironmentType
+@PutMapping("/environments/{{envID}}/type")
+ public String putUpdateEnvironmentType(){return "UpdateEnvironmentType";}
+// PingOne-Environments : DeleteEnvironment
+@DeleteMapping("/environments/{{envID}}")
+ public String deleteDeleteEnvironment(){return "DeleteEnvironment";}
+//------------------PingOne-Identity PropagationPlans
+// PingOne-Identity Propagation : Plans : ReadAllPlans
+@GetMapping("/environments/{{envID}}/propagation/plans")
+  public String getReadAllPlans(){return "ReadAllPlans";}
+// PingOne-Identity Propagation : Plans : CreatePlan
+@PostMapping("/environments/{{envID}}/propagation/plans")
+  public String postCreatePlan(){return "CreatePlan";}
+// PingOne-Identity Propagation : Plans : UpdatePlanPut
+@PutMapping("/environments/{{envID}}/propagation/plans/{{planID}}")
+  public String putUpdatePlanPut(){return "UpdatePlanPut";}
+// PingOne-Identity Propagation : Plans : DeletePlan
+@DeleteMapping("/environments/{{envID}}/propagation/plans/{{planID}}")
+  public String deleteDeletePlan(){return "DeletePlan";}
+//------------------PingOne-Identity PropagationStores
+// PingOne-Identity Propagation : Stores : ReadAllStores
+@GetMapping("/environments/{{envID}}/propagation/stores")
+  public String getReadAllStores(){return "ReadAllStores";}
+// PingOne-Identity Propagation : Stores : ReadOneStore
+@GetMapping("/environments/{{envID}}/propagation/stores/{{storeID}}")
+  public String getReadOneStore(){return "ReadOneStore";}
+// PingOne-Identity Propagation : Stores : CreateStore
+@PostMapping("/environments/{{envID}}/propagation/stores")
+  public String postCreateStore(){return "CreateStore";}
+// PingOne-Identity Propagation : Stores : TestConnectionConfiguration
+@PostMapping("{{osmosisPath}}/environments/{{envID}}/propagation/stores/connection/status")
+  public String postTestConnectionConfiguration(){return "TestConnectionConfiguration";}
+// PingOne-Identity Propagation : Stores : UpdateStorePut
+@PutMapping("/environments/{{envID}}/propagation/stores/{{storeID}}")
+  public String putUpdateStorePut(){return "UpdateStorePut";}
+// PingOne-Identity Propagation : Stores : DeleteStore
+@DeleteMapping("/environments/{{envID}}/propagation/stores/{{storeID}}")
+  public String deleteDeleteStore(){return "DeleteStore";}
+//------------------PingOne-Identity PropagationStoreMetadata
+// PingOne-Identity Propagation : StoreMetadata : IdentityPropagationStoreMetadataScim
+@PostMapping("/environments/{{envID}}/propagation/storemetadata/scim")
+  public String postIdentityPropagationStoreMetadataScim(){return "IdentityPropagationStoreMetadataScim";}
+// PingOne-Identity Propagation : StoreMetadata : IdentityPropagationStoreMetadataSalesforce
+@PostMapping("/environments/{{envID}}/propagation/storemetadata/Salesforce")
+  public String postIdentityPropagationStoreMetadataSalesforce(){return "IdentityPropagationStoreMetadataSalesforce";}    
+//------------------PingOne-Identity PropagationRules
+// PingOne-Identity Propagation : Rules : ReadAllRules
+@GetMapping("/environments/{{envID}}/propagation/rules")
+  public String getReadAllRules(){return "ReadAllRules";}
+// PingOne-Identity Propagation : Rules : ReadOnePlan'SRules
+@GetMapping("/environments/{{envID}}/propagation/plans/{{planID}}/rules")
+  public String getReadOnePlan'SRules(){return "ReadOnePlan'SRules";}
+// PingOne-Identity Propagation : Rules : ReadOneRule
+@GetMapping("/environments/{{envID}}/propagation/rules/{{ruleID}}")
+  public String getReadOneRule(){return "ReadOneRule";}
+// PingOne-Identity Propagation : Rules : CreateRule
+@PostMapping("/environments/{{envID}}/propagation/rules")
+  public String postCreateRule(){return "CreateRule";}
+// PingOne-Identity Propagation : Rules : UpdateRule
+@PutMapping("/environments/{{envID}}/propagation/rules/{{ruleID}}")
+  public String putUpdateRule(){return "UpdateRule";}
+// PingOne-Identity Propagation : Rules : DeleteRule
+@DeleteMapping("/environments/{{envID}}/propagation/rules/{{ruleID}}")
+  public String deleteDeleteRule(){return "DeleteRule";}
+//------------------PingOne-Identity PropagationMappings
+// PingOne-Identity Propagation : Mappings : ReadOneRuleMappings
+@GetMapping("/environments/{{envID}}/propagation/rules/{{ruleID}}/mappings")
+  public String getReadOneRuleMappings(){return "ReadOneRuleMappings";}
+// PingOne-Identity Propagation : Mappings : ReadOneMapping
+@GetMapping("/environments/{{envID}}/propagation/mappings/{{mappingID}}")
+  public String getReadOneMapping(){return "ReadOneMapping";}
+// PingOne-Identity Propagation : Mappings : CreateOneBasicMapping
+@PostMapping("/environments/{{envID}}/propagation/rules/{{ruleID}}/mappings")
+  public String postCreateOneBasicMapping(){return "CreateOneBasicMapping";}
+// PingOne-Identity Propagation : Mappings : UpdateMappingPut
+@PutMapping("/environments/{{envID}}/propagation/mappings/{{mappingID}}")
+  public String putUpdateMappingPut(){return "UpdateMappingPut";}
+// PingOne-Identity Propagation : Mappings : DeleteMapping
+@DeleteMapping("/environments/{{envID}}/propagation/mapping/{{mappingID}}")
+  public String deleteDeleteMapping(){return "DeleteMapping";}
+//------------------PingOne-Identity PropagationRevisions
+// PingOne-Identity Propagation : Revisions : ReadLatestRevision
+@GetMapping("/environments/{{envID}}/propagation/revisions/id:latest")
+  public String getReadLatestRevision(){return "ReadLatestRevision";}
+// PingOne-Identity Propagation : Revisions : ReadOneRevision
+@GetMapping("/environments/{{envID}}/propagation/revisions/{{revisionID}}")
+  public String getReadOneRevision(){return "ReadOneRevision";}
+// PingOne-Identity Propagation : Revisions : CreateRevision
+@PostMapping("/environments/{{envID}}/propagation/revisions")
+  public String postCreateRevision(){return "CreateRevision";}
+//------------------PingOne-Identity Provider ManagementIdentityProviders
+// PingOne-Identity Provider Management : IdentityProviders : CreateIdentityProviderFacebook
+@PostMapping("/environments/{{envID}}/identityProviders")
+  public String postCreateIdentityProviderFacebook(){return "CreateIdentityProviderFacebook";}
+// PingOne-Identity Provider Management : IdentityProviders : CreateIdentityProviderSaml
+@PostMapping("/environments/{{envID}}/identityProviders")
+  public String postCreateIdentityProviderSaml(){return "CreateIdentityProviderSaml";}
+// PingOne-Identity Provider Management : IdentityProviders : CreateIdentityProviderLinkedin
+@PostMapping("/environments/{{envID}}/identityProviders")
+  public String postCreateIdentityProviderLinkedin(){return "CreateIdentityProviderLinkedin";}
+// PingOne-Identity Provider Management : IdentityProviders : CreateIdentityProviderGoogle
+@PostMapping("/environments/{{envID}}/identityProviders")
+  public String postCreateIdentityProviderGoogle(){return "CreateIdentityProviderGoogle";}
+// PingOne-Identity Provider Management : IdentityProviders : CreateIdentityProviderApple
+@PostMapping("/environments/{{envID}}/identityProviders")
+  public String postCreateIdentityProviderApple(){return "CreateIdentityProviderApple";}
+// PingOne-Identity Provider Management : IdentityProviders : CreateIdentityProviderAmazon
+@PostMapping("/environments/{{envID}}/identityProviders")
+  public String postCreateIdentityProviderAmazon(){return "CreateIdentityProviderAmazon";}
+// PingOne-Identity Provider Management : IdentityProviders : CreateIdentityProviderTwitter
+@PostMapping("/environments/{{envID}}/identityProviders")
+  public String postCreateIdentityProviderTwitter(){return "CreateIdentityProviderTwitter";}
+// PingOne-Identity Provider Management : IdentityProviders : CreateIdentityProviderPaypal
+@PostMapping("/environments/{{envID}}/identityProviders")
+  public String postCreateIdentityProviderPaypal(){return "CreateIdentityProviderPaypal";}
+// PingOne-Identity Provider Management : IdentityProviders : CreateIdentityProviderGithub
+@PostMapping("/environments/{{envID}}/identityProviders")
+  public String postCreateIdentityProviderGithub(){return "CreateIdentityProviderGithub";}
+// PingOne-Identity Provider Management : IdentityProviders : CreateIdentityProviderMicrosoft
+@PostMapping("/environments/{{envID}}/identityProviders")
+  public String postCreateIdentityProviderMicrosoft(){return "CreateIdentityProviderMicrosoft";}
+// PingOne-Identity Provider Management : IdentityProviders : CreateIdentityProviderYahoo
+@PostMapping("/environments/{{envID}}/identityProviders")
+  public String postCreateIdentityProviderYahoo(){return "CreateIdentityProviderYahoo";}
+// PingOne-Identity Provider Management : IdentityProviders : ReadAllIdentityProviders
+@GetMapping("/environments/{{envID}}/identityProviders")
+  public String getReadAllIdentityProviders(){return "ReadAllIdentityProviders";}
+// PingOne-Identity Provider Management : IdentityProviders : ReadOneIdentityProvider
+@GetMapping("/environments/{{envID}}/identityProviders/{{idpID}}")
+  public String getReadOneIdentityProvider(){return "ReadOneIdentityProvider";}
+// PingOne-Identity Provider Management : IdentityProviders : UpdateIdentityProviderFacebook
+@PutMapping("/environments/{{envID}}/identityProviders")
+  public String putUpdateIdentityProviderFacebook(){return "UpdateIdentityProviderFacebook";}
+// PingOne-Identity Provider Management : IdentityProviders : UpdateIdentityProviderLinkedin
+@PutMapping("/environments/{{envID}}/identityProviders")
+  public String putUpdateIdentityProviderLinkedin(){return "UpdateIdentityProviderLinkedin";}
+// PingOne-Identity Provider Management : IdentityProviders : UpdateIdentityProviderSaml
+@PutMapping("/environments/{{envID}}/identityProviders")
+  public String putUpdateIdentityProviderSaml(){return "UpdateIdentityProviderSaml";}
+// PingOne-Identity Provider Management : IdentityProviders : UpdateIdentityProviderTwitter
+@PutMapping("/environments/{{envID}}/identityProviders")
+  public String putUpdateIdentityProviderTwitter(){return "UpdateIdentityProviderTwitter";}
+// PingOne-Identity Provider Management : IdentityProviders : UpdateIdentityProviderAmazon
+@PutMapping("/environments/{{envID}}/identityProviders")
+  public String putUpdateIdentityProviderAmazon(){return "UpdateIdentityProviderAmazon";}
+// PingOne-Identity Provider Management : IdentityProviders : UpdateIdentityProviderPaypal
+@PutMapping("/environments/{{envID}}/identityProviders")
+  public String putUpdateIdentityProviderPaypal(){return "UpdateIdentityProviderPaypal";}
+// PingOne-Identity Provider Management : IdentityProviders : UpdateIdentityProviderGithub
+@PutMapping("/environments/{{envID}}/identityProviders")
+  public String putUpdateIdentityProviderGithub(){return "UpdateIdentityProviderGithub";}
+// PingOne-Identity Provider Management : IdentityProviders : UpdateIdentityProviderMicrosoft
+@PutMapping("/environments/{{envID}}/identityProviders")
+  public String putUpdateIdentityProviderMicrosoft(){return "UpdateIdentityProviderMicrosoft";}
+// PingOne-Identity Provider Management : IdentityProviders : UpdateIdentityProviderYahoo
+@PutMapping("/environments/{{envID}}/identityProviders")
+  public String putUpdateIdentityProviderYahoo(){return "UpdateIdentityProviderYahoo";}
+// PingOne-Identity Provider Management : IdentityProviders : UpdateIdentityProviderApple
+@PutMapping("/environments/{{envID}}/identityProviders")
+  public String putUpdateIdentityProviderApple(){return "UpdateIdentityProviderApple";}
+// PingOne-Identity Provider Management : IdentityProviders : DeleteIdentityProvider
+@DeleteMapping("/environments/{{envID}}/identityProviders/{{idpID}}")
+  public String deleteDeleteIdentityProvider(){return "DeleteIdentityProvider";}
+//------------------PingOne-Identity Provider ManagementIdentityProviderAttributes
+// PingOne-Identity Provider Management : IdentityProviderAttributes : CreateIdentityProviderAttribute
+@PostMapping("/environments/{{envID}}/identityProviders/{{idpID}}/attributes")
+  public String postCreateIdentityProviderAttribute(){return "CreateIdentityProviderAttribute";}
+// PingOne-Identity Provider Management : IdentityProviderAttributes : ReadAllIdentityProviderAttributes
+@GetMapping("/environments/{{envID}}/identityProviders/{{idpID}}/attributes")
+  public String getReadAllIdentityProviderAttributes(){return "ReadAllIdentityProviderAttributes";}
+// PingOne-Identity Provider Management : IdentityProviderAttributes : ReadOneIdentityProviderAttribute
+@GetMapping("/environments/{{envID}}/identityProviders/{{idpID}}/attributes/{{idpAttrID}}")
+  public String getReadOneIdentityProviderAttribute(){return "ReadOneIdentityProviderAttribute";}
+// PingOne-Identity Provider Management : IdentityProviderAttributes : UpdateIdentityProviderAttribute
+@PutMapping("/environments/{{envID}}/identityProviders/{{idpID}}/attributes/{{idpAttrID}}")
+  public String putUpdateIdentityProviderAttribute(){return "UpdateIdentityProviderAttribute";}
+// PingOne-Identity Provider Management : IdentityProviderAttributes : DeleteIdentityProviderAttribute
+@DeleteMapping("1/environments/{{envID}}/identityProviders/{{idpID}}/attributes/{{idpAttrID}}")
+  public String deleteDeleteIdentityProviderAttribute(){return "DeleteIdentityProviderAttribute";}
+//------------------PingOne-Images
+// PingOne-Images : CreateImage
+@PostMapping("/environments/{{envID}}/images")
+ public String postCreateImage(){return "CreateImage";}
+// PingOne-Images : ReadImage
+@GetMapping("/environments/{{envID}}/images/{{imgID}}")
+ public String getReadImage(){return "ReadImage";}
+// PingOne-Images : DeleteImage
+@DeleteMapping("/environments/{{envID}}/images/{{imgID}}")
+ public String deleteDeleteImage(){return "DeleteImage";}
+//------------------PingOne-Licenses
+// PingOne-Licenses : ReadAllLicenses
+@GetMapping("/organizations/{{orgID}}/licenses")
+ public String getReadAllLicenses(){return "ReadAllLicenses";}
+// PingOne-Licenses : ReadOneLicense
+@GetMapping("/organizations/{{orgID}}/licenses/{{licenseID}}")
+ public String getReadOneLicense(){return "ReadOneLicense";}
+// PingOne-Licenses : UpdateLicenseName
+@PutMapping("/organizations/{{orgID}}/licenses/{{licenseID}}/name")
+ public String putUpdateLicenseName(){return "UpdateLicenseName";}
+// PingOne-Licenses : ReadOneLicenseName
+@GetMapping("/organizations/{{orgID}}/licenses/{{licenseID}}/name")
+ public String getReadOneLicenseName(){return "ReadOneLicenseName";}
+//------------------PingOne-MFA Settings
+// PingOne-MFA Settings : GetMfaSettings
+@GetMapping("/environments/{{envID}}/mfaSettings")
+ public String getGetMfaSettings(){return "GetMfaSettings";}
+// PingOne-MFA Settings : UpdateMfaSettings
+@PutMapping("/environments/{{envID}}/mfaSettings")
+ public String putUpdateMfaSettings(){return "UpdateMfaSettings";}
+// PingOne-MFA Settings : DeleteResetMfaSettings
+@DeleteMapping("/environments/{{envID}}/mfaSettings")
+ public String deleteDeleteResetMfaSettings(){return "DeleteResetMfaSettings";}
+//------------------PingOne-NotificationsTemplates
+// PingOne-Notifications : Templates : ReadAllTemplates
+@GetMapping("/environments/{{envID}}/templates")
+  public String getReadAllTemplates(){return "ReadAllTemplates";}
+// PingOne-Notifications : Templates : ReadOneTemplate
+@GetMapping("/environments/{{envID}}/templates/{{templateName}}")
+  public String getReadOneTemplate(){return "ReadOneTemplate";}
+// PingOne-Notifications : Templates : CreateEmailContent
+@PostMapping("/environments/{{envID}}/templates/{{templateName}}/contents")
+  public String postCreateEmailContent(){return "CreateEmailContent";}
+// PingOne-Notifications : Templates : CreateTextMessageContent
+@PostMapping("/environments/{{envID}}/templates/{{templateName}}/contents") 
+  public String postCreateTextMessageContent(){return "CreateTextMessageContent";}
+// PingOne-Notifications : Templates : UpdateEmailContent
+@PutMapping("/environments/{{envID}}/templates/{{templateName}}/contents/{{contentID}}")
+  public String putUpdateEmailContent(){return "UpdateEmailContent";}
+// PingOne-Notifications : Templates : UpdateTextMessageContent
+@PutMapping("/environments/{{envID}}/templates/{{templateName}}/contents/{{contentID}}")
+  public String putUpdateTextMessageContent(){return "UpdateTextMessageContent";}
+// PingOne-Notifications : Templates : ReadOneContent
+@GetMapping("/environments/{{envID}}/templates/{{templateName}}/contents/{{contentID}}")
+  public String getReadOneContent(){return "ReadOneContent";}
+// PingOne-Notifications : Templates : ReadAllContent
+@GetMapping("/environments/{{envID}}/templates/{{templateName}}/contents")
+  public String getReadAllContent(){return "ReadAllContent";}
+// PingOne-Notifications : Templates : DeleteContent
+@DeleteMapping("/environments/{{envID}}/templates/{{templateName}}/contents/{{contentID}}")
+  public String deleteDeleteContent(){return "DeleteContent";}
+//------------------PingOne-NotificationsNotificationssettings
+// PingOne-Notifications : Notificationssettings : ReadNotificationsSettings
+@GetMapping("/environments/{{envID}}/notificationsSettings")
+  public String getReadNotificationsSettings(){return "ReadNotificationsSettings";}
+// PingOne-Notifications : Notificationssettings : UpdateNotificationsSettings
+@PutMapping("/environments/{{envID}}/notificationsSettings")
+  public String putUpdateNotificationsSettings(){return "UpdateNotificationsSettings";}
+// PingOne-Notifications : Notificationssettings : DeleteNotificationsSettings
+@DeleteMapping("/environments/{{envID}}/notificationsSettings")
+  public String deleteDeleteNotificationsSettings(){return "DeleteNotificationsSettings";}
+//------------------PingOne-NotificationsNotificationsSettingsSmtp
+// PingOne-Notifications : NotificationsSettingsSmtp : ReadNotificationsSettingsSmtp
+@GetMapping("/environments/{{envID}}/notificationsSettings/emailDeliverySettings")
+  public String getReadNotificationsSettingsSmtp(){return "ReadNotificationsSettingsSmtp";}
+// PingOne-Notifications : NotificationsSettingsSmtp : UpdateNotificationsSettingsSmtp
+@PutMapping("/environments/{{envID}}/notificationsSettings/emailDeliverySettings")
+  public String putUpdateNotificationsSettingsSmtp(){return "UpdateNotificationsSettingsSmtp";}
+// PingOne-Notifications : NotificationsSettingsSmtp : DeleteNotificationsSettingsSmtp
+@DeleteMapping("/environments/{{envID}}/notificationsSettings/emailDeliverySettings")
+  public String deleteDeleteNotificationsSettingsSmtp(){return "DeleteNotificationsSettingsSmtp";}
+//------------------PingOne-NotificationsTrustedEmailDomains
+// PingOne-Notifications : TrustedEmailDomains : CreateEmailDomain
+@PostMapping("/environments/{{envID}}/emailDomains")
+  public String postCreateEmailDomain(){return "CreateEmailDomain";}
+// PingOne-Notifications : TrustedEmailDomains : ReadEmailDomain
+@GetMapping("/environments/{{envID}}/emailDomains/{{emailDomainID}}")
+  public String getReadEmailDomain(){return "ReadEmailDomain";}
+// PingOne-Notifications : TrustedEmailDomains : ReadAllEmailDomains
+@GetMapping("/environments/{{envID}}/emailDomains")
+  public String getReadAllEmailDomains(){return "ReadAllEmailDomains";}
+// PingOne-Notifications : TrustedEmailDomains : DeleteEmailDomain
+@DeleteMapping("/environments/{{envID}}/emailDomains/{{emailDomainID}}")
+  public String deleteDeleteEmailDomain(){return "DeleteEmailDomain";}
+// PingOne-Notifications : TrustedEmailDomains : ReadEmailDomainOwnershipTokens
+@GetMapping("/environments/{{envID}}/emailDomains/{{emailDomainID}}/ownership") 
+  public String getReadEmailDomainOwnershipTokens(){return "ReadEmailDomainOwnershipTokens";}
+// PingOne-Notifications : TrustedEmailDomains : ReadEmailDomainDkimTokens
+@GetMapping("/environments/{{envID}}/emailDomains/{{emailDomainID}}/dkim")
+  public String getReadEmailDomainDkimTokens(){return "ReadEmailDomainDkimTokens";}
+// PingOne-Notifications : TrustedEmailDomains : ReadEmailDomainSpfTokens
+@GetMapping("/environments/{{envID}}/emailDomains/{{emailDomainID}}/spf")
+  public String getReadEmailDomainSpfTokens(){return "ReadEmailDomainSpfTokens";}
+// PingOne-Notifications : TrustedEmailDomains : ReadAllEmailDomainTrustedEmails
+@GetMapping("/environments/{{envID}}/emailDomains/{{emailDomainID}}/trustedEmails")
+  public String getReadAllEmailDomainTrustedEmails(){return "ReadAllEmailDomainTrustedEmails";}
+// PingOne-Notifications : TrustedEmailDomains : CreateEmailDomainTrustedEmail
+@PostMapping("/environments/{{envID}}/emailDomains/{{emailDomainID}}/trustedEmails")
+  public String postCreateEmailDomainTrustedEmail(){return "CreateEmailDomainTrustedEmail";}
+// PingOne-Notifications : TrustedEmailDomains : ActivateTrustedEmail
+@PostMapping("/environments/{{envID}}/emailDomains/{{emailDomainID}}/trustedEmails/{{trustedEmailID}}")
+  public String postActivateTrustedEmail(){return "ActivateTrustedEmail";}
+// PingOne-Notifications : TrustedEmailDomains : ResendVerificationCodeForTrustedEmail
+@PostMapping("/environments/{{envID}}/emailDomains/{{emailDomainID}}/trustedEmails/{{trustedEmailID}}")
+  public String postResendVerificationCodeForTrustedEmail(){return "ResendVerificationCodeForTrustedEmail";}
+// PingOne-Notifications : TrustedEmailDomains : ReadEmailDomainTrustedEmail
+@GetMapping("/environments/{{envID}}/emailDomains/{{emailDomainID}}/trustedEmails/{{trustedEmailID}}")
+  public String getReadEmailDomainTrustedEmail(){return "ReadEmailDomainTrustedEmail";}
+// PingOne-Notifications : TrustedEmailDomains : DeleteEmailDomainTrustedEmail
+@DeleteMapping("/environments/{{envID}}/emailDomains/{{emailDomainID}}/trustedEmails/{{trustedEmailID}}")
+  public String deleteDeleteEmailDomainTrustedEmail(){return "DeleteEmailDomainTrustedEmail";}
+// PingOne-Notifications : TrustedEmailDomains : ReadNotificationsSettingsWithTrustedEmail
+@GetMapping("/environments/{{envID}}/notificationsSettings")
+  public String getReadNotificationsSettingsWithTrustedEmail(){return "ReadNotificationsSettingsWithTrustedEmail";}       
+// PingOne-Notifications : TrustedEmailDomains : UpdateNotificationsSettingsWithTrustedEmail
+@PutMapping("/environments/{{envID}}/notificationsSettings")
+  public String putUpdateNotificationsSettingsWithTrustedEmail(){return "UpdateNotificationsSettingsWithTrustedEmail";}   
+//------------------PingOne-NotificationsPhoneDeliverySettings
+// PingOne-Notifications : PhoneDeliverySettings : ReadAllPhoneDeliverySettings
+@GetMapping("/environments/{{envID}}/templates")
+  public String getReadAllPhoneDeliverySettings(){return "ReadAllPhoneDeliverySettings";}
+// PingOne-Notifications : PhoneDeliverySettings : ReadOnePhoneDeliverySettings
+@GetMapping("/environments/{{envID}}/notificationsSettings/phoneDeliverySettings/{{phoneDeliverySettingsID}}")
+  public String getReadOnePhoneDeliverySettings(){return "ReadOnePhoneDeliverySettings";}
+// PingOne-Notifications : PhoneDeliverySettings : CreatePhoneDeliverySettings
+@PostMapping("/environments/{{envID}}/templates/{{templateName}}/contents")
+  public String postCreatePhoneDeliverySettings(){return "CreatePhoneDeliverySettings";}
+// PingOne-Notifications : PhoneDeliverySettings : UpdatePhoneDeliverySettings
+@PutMapping("/environments/{{envID}}/templates/{{templateName}}/contents/{{contentID}}")
+  public String putUpdatePhoneDeliverySettings(){return "UpdatePhoneDeliverySettings";}
+// PingOne-Notifications : PhoneDeliverySettings : DeletePhoneDeliverySettings
+@DeleteMapping("/environments/{{envID}}/notificationsSettings/phoneDeliverySettings/{{phoneDeliverySettingsID}}") 
+  public String deleteDeletePhoneDeliverySettings(){return "DeletePhoneDeliverySettings";}
+//------------------PingOne-Organizations
+// PingOne-Organizations : ReadOneOrganization
+@GetMapping("/organizations/{{orgID}}")
+ public String getReadOneOrganization(){return "ReadOneOrganization";}
+// PingOne-Organizations : ReadAllOrganizations
+@GetMapping("/organizations")
+ public String getReadAllOrganizations(){return "ReadAllOrganizations";}
+//------------------PingOne-Password Policies
+// PingOne-Password Policies : ReadAllPasswordPolicies
+@GetMapping("/environments/{{envID}}/passwordPolicies")
+ public String getReadAllPasswordPolicies(){return "ReadAllPasswordPolicies";}
+// PingOne-Password Policies : ReadOnePasswordPolicy
+@GetMapping("/environments/{{envID}}/passwordPolicies/{{passwordPolicyID}}")
+ public String getReadOnePasswordPolicy(){return "ReadOnePasswordPolicy";}
+// PingOne-Password Policies : UpdatePasswordPolicy
+@PutMapping("/environments/{{envID}}/passwordPolicies/{{passwordPolicyID}}")
+ public String putUpdatePasswordPolicy(){return "UpdatePasswordPolicy";}
+//------------------PingOne-Populations
+// PingOne-Populations : CreatePopulation
+@PostMapping("/environments/{{envID}}/populations")
+ public String postCreatePopulation(){return "CreatePopulation";}
+// PingOne-Populations : ReadAllPopulations
+@GetMapping("/environments/{{envID}}/populations")
+ public String getReadAllPopulations(){return "ReadAllPopulations";}
+// PingOne-Populations : ReadOnePopulation
+@GetMapping("/environments/{{envID}}/populations/{{popID}}")
+ public String getReadOnePopulation(){return "ReadOnePopulation";}
+// PingOne-Populations : UpdatePopulation
+@PutMapping("/environments/{{envID}}/populations/{{popID}}")
+ public String putUpdatePopulation(){return "UpdatePopulation";}
+// PingOne-Populations : DeletePopulation
+@DeleteMapping("/environments/{{envID}}/populations/{{popID}}")
+ public String deleteDeletePopulation(){return "DeletePopulation";}
+//------------------PingOne-ResourcesResources
+// PingOne-Resources : Resources : CreateResource
+@PostMapping("/environments/{{envID}}/resources")
+  public String postCreateResource(){return "CreateResource";}
+// PingOne-Resources : Resources : ReadAllResources
+@GetMapping("/environments/{{envID}}/resources")
+  public String getReadAllResources(){return "ReadAllResources";}
+// PingOne-Resources : Resources : ReadOneResource
+@GetMapping("/environments/{{envID}}/resources/{{resourceID}}")
+  public String getReadOneResource(){return "ReadOneResource";}
+// PingOne-Resources : Resources : UpdateResource
+@PutMapping("/environments/{{envID}}/resources/{{resourceID}}")
+  public String putUpdateResource(){return "UpdateResource";}
+// PingOne-Resources : Resources : DeleteResource
+@DeleteMapping("/environments/{{envID}}/resources/{{resourceID}}")
+  public String deleteDeleteResource(){return "DeleteResource";}
+//------------------PingOne-ResourcesResourceScopes
+// PingOne-Resources : ResourceScopes : CreateScope
+@PostMapping("/environments/{{envID}}/resources/{{resourceID}}/scopes")
+  public String postCreateScope(){return "CreateScope";}
+// PingOne-Resources : ResourceScopes : ReadAllScopesResource
+@GetMapping("/environments/{{envID}}/resources/{{resourceID}}/scopes")
+  public String getReadAllScopesResource(){return "ReadAllScopesResource";}
+// PingOne-Resources : ResourceScopes : ReadOneScope
+@GetMapping("/environments/{{envID}}/resources/{{resourceID}}/scopes/{{scopeID}}")
+  public String getReadOneScope(){return "ReadOneScope";}
+// PingOne-Resources : ResourceScopes : UpdateScope
+@PutMapping("/environments/{{envID}}/resources/{{resourceID}}/scopes/{{scopeID}}")
+  public String putUpdateScope(){return "UpdateScope";}
+// PingOne-Resources : ResourceScopes : DeleteScope
+@DeleteMapping("/environments/{{envID}}/resources/{{resourceID}}/scopes/{{scopeID}}")
+  public String deleteDeleteScope(){return "DeleteScope";}
+//------------------PingOne-ResourcesResourceAttributes
+// PingOne-Resources : ResourceAttributes : CreateResourceAttribute
+@PostMapping("/environments/{{envID}}/resources/{{resourceID}}/attributes")
+  public String postCreateResourceAttribute(){return "CreateResourceAttribute";}
+// PingOne-Resources : ResourceAttributes : ReadAllResourceAttributes
+@GetMapping("/environments/{{envID}}/resources/{{resourceID}}/attributes")
+  public String getReadAllResourceAttributes(){return "ReadAllResourceAttributes";}
+// PingOne-Resources : ResourceAttributes : ReadOneResourceAttribute
+@GetMapping("/environments/{{envID}}/resources/{{resourceID}}/attributes/{{resourceAttrID}}")
+  public String getReadOneResourceAttribute(){return "ReadOneResourceAttribute";}
+// PingOne-Resources : ResourceAttributes : UpdateResourceAttribute
+@PutMapping("/environments/{{envID}}/resources/{{resourceID}}/attributes/{{resourceAttrID}}")
+  public String putUpdateResourceAttribute(){return "UpdateResourceAttribute";}
+// PingOne-Resources : ResourceAttributes : DeleteResourceAttribute
+@DeleteMapping("/environments/{{envID}}/resources/{{resourceID}}/attributes/{{resourceAttrID}}")
+  public String deleteDeleteResourceAttribute(){return "DeleteResourceAttribute";}
+//------------------PingOne-Risk ManagmentRiskEvaluations
+// PingOne-Risk Managment : RiskEvaluations : CreateRiskEvaluation
+@PostMapping("/environments/{{envID}}/riskEvaluations")
+  public String postCreateRiskEvaluation(){return "CreateRiskEvaluation";}
+// PingOne-Risk Managment : RiskEvaluations : ReadRiskEvaluation
+@GetMapping("/environments/{{envID}}/riskEvaluations/{{riskEvaluationID}}")
+  public String getReadRiskEvaluation(){return "ReadRiskEvaluation";}
+// PingOne-Risk Managment : RiskEvaluations : UpdateRiskEvaluation
+@PutMapping("/environments/{{envID}}/riskEvaluations/{{riskEvaluationID}}/event")
+  public String putUpdateRiskEvaluation(){return "UpdateRiskEvaluation";}
+//------------------PingOne-Risk ManagmentRiskPolicies
+// PingOne-Risk Managment : RiskPolicies : ReadAllRiskPolicySets
+@GetMapping("/environments/{{envID}}/riskPolicySets")
+  public String getReadAllRiskPolicySets(){return "ReadAllRiskPolicySets";}
+// PingOne-Risk Managment : RiskPolicies : ReadOneRiskPolicySet
+@GetMapping("/environments/{{envID}}/riskPolicySets/{{riskPolicySetID}}")
+  public String getReadOneRiskPolicySet(){return "ReadOneRiskPolicySet";}
+// PingOne-Risk Managment : RiskPolicies : CreateRiskPolicySet
+@PostMapping("/environments/{{envID}}/riskPolicySets")
+  public String postCreateRiskPolicySet(){return "CreateRiskPolicySet";}
+// PingOne-Risk Managment : RiskPolicies : UpdateRiskPolicySet
+@PutMapping("/environments/{{envID}}/riskPolicySets/{{riskPolicySetID}}")
+  public String putUpdateRiskPolicySet(){return "UpdateRiskPolicySet";}
+// PingOne-Risk Managment : RiskPolicies : DeleteRiskPolicySet
+@DeleteMapping("/environments/{{envID}}/riskPolicySets/{{riskPolicySetID}}")
+  public String deleteDeleteRiskPolicySet(){return "DeleteRiskPolicySet";}
+//------------------PingOne-Roles
+// PingOne-Roles : ReadAllRoles
+@GetMapping("/roles")
+ public String getReadAllRoles(){return "ReadAllRoles";}
+// PingOne-Roles : ReadOneRole
+@GetMapping("/roles/{{roleID}}")
+ public String getReadOneRole(){return "ReadOneRole";}
+//------------------PingOne-Schemas
+// PingOne-Schemas : ReadAllSchemas
+@GetMapping("/environments/{{envID}}/schemas")
+ public String getReadAllSchemas(){return "ReadAllSchemas";}
+// PingOne-Schemas : ReadOneSchema
+@GetMapping("/environments/{{envID}}/schemas/{{schemaID}}")
+ public String getReadOneSchema(){return "ReadOneSchema";}
+// PingOne-Schemas : ReadAllSchemaAttributes
+@GetMapping("/environments/{{envID}}/schemas/{{schemaID}}/attributes")
+ public String getReadAllSchemaAttributes(){return "ReadAllSchemaAttributes";}
+// PingOne-Schemas : CreateAttribute
+@PostMapping("/environments/{{envID}}/schemas/{{schemaID}}/attributes")
+ public String postCreateAttribute(){return "CreateAttribute";}
+// PingOne-Schemas : ReadOneAttribute
+@GetMapping("/environments/{{envID}}/schemas/{{schemaID}}/attributes/{{schemaAttrID}}")
+ public String getReadOneAttribute(){return "ReadOneAttribute";}
+// PingOne-Schemas : UpdateAttributePatch
+@PatchMapping("/environments/{{envID}}/schemas/{{schemaID}}/attributes/{{schemaAttrID}}")
+ public String patchUpdateAttributePatch(){return "UpdateAttributePatch";}
+// PingOne-Schemas : UpdateAttributePut
+@PutMapping("/environments/{{envID}}/schemas/{{schemaID}}/attributes/{{schemaAttrID}}")
+ public String putUpdateAttributePut(){return "UpdateAttributePut";}
+// PingOne-Schemas : DeleteAttribute
+@DeleteMapping("/environments/{{envID}}/schemas/{{schemaID}}/attributes/{{schemaAttrID}}")
+ public String deleteDeleteAttribute(){return "DeleteAttribute";}
+//------------------PingOne-Sign-On PoliciesSignOnPolicies
+// PingOne-Sign-On Policies : SignOnPolicies : CreateSignOnPolicy
+@PostMapping("/environments/{{envID}}/signOnPolicies")
+  public String postCreateSignOnPolicy(){return "CreateSignOnPolicy";}
+// PingOne-Sign-On Policies : SignOnPolicies : ReadAllSignOnPolicies
+@GetMapping("/environments/{{envID}}/signOnPolicies")
+  public String getReadAllSignOnPolicies(){return "ReadAllSignOnPolicies";}
+// PingOne-Sign-On Policies : SignOnPolicies : ReadOneSignOnPolicy
+@GetMapping("/environments/{{envID}}/signOnPolicies/{{policyID}}")
+  public String getReadOneSignOnPolicy(){return "ReadOneSignOnPolicy";}
+// PingOne-Sign-On Policies : SignOnPolicies : UpdateSignOnPolicy
+@PutMapping("/environments/{{envID}}/signOnPolicies/{{policyID}}")
+  public String putUpdateSignOnPolicy(){return "UpdateSignOnPolicy";}
+// PingOne-Sign-On Policies : SignOnPolicies : DeleteSignOnPolicy
+@DeleteMapping("/environments/{{envID}}/signOnPolicies/{{policyID}}")
+  public String deleteDeleteSignOnPolicy(){return "DeleteSignOnPolicy";}
+//------------------PingOne-Sign-On PoliciesSignOnPolicyActions
+// PingOne-Sign-On Policies : SignOnPolicyActions : ReadAllSignOnPolicyActions
+@GetMapping("/environments/{{envID}}/signOnPolicies/{{policyID}}/actions")
+  public String getReadAllSignOnPolicyActions(){return "ReadAllSignOnPolicyActions";}
+// PingOne-Sign-On Policies : SignOnPolicyActions : ReadOneSignOnPolicyAction
+@GetMapping("/environments/{{envID}}/signOnPolicies/{{policyID}}/actions/{{actionID}}")
+  public String getReadOneSignOnPolicyAction(){return "ReadOneSignOnPolicyAction";}
+// PingOne-Sign-On Policies : SignOnPolicyActions : DeleteSignOnPolicyAction
+@DeleteMapping("/environments/{{envID}}/signOnPolicies/{{policyID}}/actions/{{actionID}}")
+  public String deleteDeleteSignOnPolicyAction(){return "DeleteSignOnPolicyAction";}
+// PingOne-Sign-On Policies : SignOnPolicyActions : CreateSignOnPolicyAction
+@PostMapping("/environments/{{envID}}/signOnPolicies/{{policyID}}/actions")
+  public String postCreateSignOnPolicyAction(){return "CreateSignOnPolicyAction";}
+// PingOne-Sign-On Policies : SignOnPolicyActions : UpdateSignOnPolicyAction
+@PutMapping("/environments/{{envID}}/signOnPolicies/{{policyID}}/actions/{{actionID}}")
+  public String putUpdateSignOnPolicyAction(){return "UpdateSignOnPolicyAction";}
+//------------------PingOne-Subscriptions (webhooks)
+// PingOne-Subscriptions (webhooks) : ReadAllSubscriptions
+@GetMapping("/environments/{{envID}}/subscriptions")
+ public String getReadAllSubscriptions(){return "ReadAllSubscriptions";}
+// PingOne-Subscriptions (webhooks) : ReadOneSubscription
+@GetMapping("/environments/{{envID}}/subscriptions/{{subscriptionID}}")
+ public String getReadOneSubscription(){return "ReadOneSubscription";}
+// PingOne-Subscriptions (webhooks) : CreateSubscription
+@PostMapping("/environments/{{envID}}/subscriptions")
+ public String postCreateSubscription(){return "CreateSubscription";}
+// PingOne-Subscriptions (webhooks) : UpdateSubscription
+@PutMapping("/environments/{{envID}}/subscriptions/{{subscriptionID}}")
+ public String putUpdateSubscription(){return "UpdateSubscription";}
+// PingOne-Subscriptions (webhooks) : DeleteSubscription
+@DeleteMapping("/environments/{{envID}}/subscriptions/{{subscriptionID}}")
+ public String deleteDeleteSubscription(){return "DeleteSubscription";}
+//------------------PingOne-Total Identities
+// PingOne-Total Identities : ReadTotalIdentityCounts
+@GetMapping("/environments/{{envID}}/totalIdentities?filter=startDate eq "2019-05-01T19:00:00Z" and endDate eq "2019-05-31T19:00:00Z"")
+ public String getReadTotalIdentityCounts(){return "ReadTotalIdentityCounts";}
+//------------------PingOne-User Activities
+// PingOne-User Activities : ReadUserActivities
+@GetMapping("/environments/{{envID}}/userActivities")
+ public String getReadUserActivities(){return "ReadUserActivities";}
+//------------------PingOne-UsersUsers
+// PingOne-Users : Users : CreateUser
+@PostMapping("/environments/{{envID}}/users")
+  public String postCreateUser(){return "CreateUser";}
+// PingOne-Users : Users : CreateUserImport
+@PostMapping("/environments/{{envID}}/users")
+  public String postCreateUserImport(){return "CreateUserImport";}
+// PingOne-Users : Users : ReadAllUsers
+@GetMapping("/environments/{{envID}}/users")
+  public String getReadAllUsers(){return "ReadAllUsers";}
+// PingOne-Users : Users : ReadOneUser
+@GetMapping("/environments/{{envID}}/users/{{userID}}")
+  public String getReadOneUser(){return "ReadOneUser";}
+// PingOne-Users : Users : UpdateUserPatch
+@PatchMapping("/environments/{{envID}}/users/{{userID}}")
+  public String patchUpdateUserPatch(){return "UpdateUserPatch";}
+// PingOne-Users : Users : UpdateUserPut
+@PutMapping("/environments/{{envID}}/users/{{userID}}")
+  public String putUpdateUserPut(){return "UpdateUserPut";}
+// PingOne-Users : Users : DeleteUser
+@DeleteMapping("/environments/{{envID}}/users/{{userID}}")
+  public String deleteDeleteUser(){return "DeleteUser";}
+//------------------PingOne-UsersDevices
+// PingOne-Users : Devices : CreateUserDeviceEmail
+@PostMapping("/environments/{{envID}}/users/{{userID}}/devices")
+  public String postCreateUserDeviceEmail(){return "CreateUserDeviceEmail";}
+// PingOne-Users : Devices : CreateUserDeviceSms
+@PostMapping("/environments/{{envID}}/users/{{userID}}/devices")
+  public String postCreateUserDeviceSms(){return "CreateUserDeviceSms";}
+// PingOne-Users : Devices : ReadAllUserDevices
+@GetMapping("/environments/{{envID}}/users/{{userID}}/devices")
+  public String getReadAllUserDevices(){return "ReadAllUserDevices";}
+// PingOne-Users : Devices : ReadOneUserDevice
+@GetMapping("/environments/{{envID}}/users/{{userID}}/devices/{{deviceID}}")
+  public String getReadOneUserDevice(){return "ReadOneUserDevice";}
+// PingOne-Users : Devices : ActivateUserDevice
+@PostMapping("/environments/{{envID}}/users/{{userID}}/devices/{{deviceID}}")
+  public String postActivateUserDevice(){return "ActivateUserDevice";}
+// PingOne-Users : Devices : DeleteUserDevice
+@DeleteMapping("/environments/{{envID}}/users/{{userID}}/devices/{{deviceID}}")
+  public String deleteDeleteUserDevice(){return "DeleteUserDevice";}
+//------------------PingOne-UsersEnableUsers
+// PingOne-Users : EnableUsers : ReadUserEnabled
+@GetMapping("/environments/{{envID}}/users/{{userID}}/enabled")
+  public String getReadUserEnabled(){return "ReadUserEnabled";}
+// PingOne-Users : EnableUsers : UpdateUserEnabled
+@PutMapping("/environments/{{envID}}/users/{{userID}}/enabled")
+  public String putUpdateUserEnabled(){return "UpdateUserEnabled";}
+//------------------PingOne-UsersEnableUsersMfa
+// PingOne-Users : EnableUsersMfa : ReadUserMfaEnabled
+@GetMapping("/environments/{{envID}}/users/{{userID}}/mfaEnabled")
+  public String getReadUserMfaEnabled(){return "ReadUserMfaEnabled";}
+// PingOne-Users : EnableUsersMfa : UpdateUserMfaEnabled
+@PutMapping("/environments/{{envID}}/users/{{userID}}/mfaEnabled")
+  public String putUpdateUserMfaEnabled(){return "UpdateUserMfaEnabled";}
+//------------------PingOne-UsersLinkedAccounts
+// PingOne-Users : LinkedAccounts : ReadLinkedAccounts
+@GetMapping("/environments/{{envID}}/users/{{userID}}/linkedAccounts")
+  public String getReadLinkedAccounts(){return "ReadLinkedAccounts";}
+// PingOne-Users : LinkedAccounts : ReadOneLinkedAccount
+@GetMapping("/environments/{{envID}}/users/{{userID}}/linkedAccounts/{{linkedAccountID}}")
+  public String getReadOneLinkedAccount(){return "ReadOneLinkedAccount";}
+// PingOne-Users : LinkedAccounts : DeleteLinkedAccount
+@DeleteMapping("/environments/{{envID}}/users/{{userID}}/linkedAccounts/{{linkedAccountID}}")
+  public String deleteDeleteLinkedAccount(){return "DeleteLinkedAccount";}
+//------------------PingOne-UsersUserPopulations
+// PingOne-Users : UserPopulations : ReadUserPopulation
+@GetMapping("/environments/{{envID}}/users/{{userID}}/population")
+  public String getReadUserPopulation(){return "ReadUserPopulation";}
+// PingOne-Users : UserPopulations : UpdateUserPopulation
+@PutMapping("/environments/{{envID}}/users/{{userID}}/population")
+  public String putUpdateUserPopulation(){return "UpdateUserPopulation";}
+//------------------PingOne-UsersUserPasswords
+// PingOne-Users : UserPasswords : ReadPasswordState
+@GetMapping("/environments/{{envID}}/users/{{userID}}/password")
+  public String getReadPasswordState(){return "ReadPasswordState";}
+// PingOne-Users : UserPasswords : PasswordCheck
+@PostMapping("/environments/{{envID}}/users/{{userID}}/password")
+  public String postPasswordCheck(){return "PasswordCheck";}
+// PingOne-Users : UserPasswords : PasswordUnlock
+@PostMapping("/environments/{{envID}}/users/{{userID}}/password")
+  public String postPasswordUnlock(){return "PasswordUnlock";}
+// PingOne-Users : UserPasswords : UpdatePasswordSelf
+@PutMapping("/environments/{{envID}}/users/{{userID}}/password")
+  public String putUpdatePasswordSelf(){return "UpdatePasswordSelf";}
+// PingOne-Users : UserPasswords : UpdatePasswordAdmin
+@PutMapping("/environments/{{envID}}/users/{{userID}}/password")
+  public String putUpdatePasswordAdmin(){return "UpdatePasswordAdmin";}
+// PingOne-Users : UserPasswords : UpdatePasswordSet
+@PutMapping("/environments/{{envID}}/users/{{userID}}/password")
+  public String putUpdatePasswordSet(){return "UpdatePasswordSet";}
+//------------------PingOne-UsersUserRoleAssignments
+// PingOne-Users : UserRoleAssignments : ReadUser'SRoleAssignmentsAll
+@GetMapping("/environments/{{envID}}/users/{{userID}}/roleAssignments")
+  public String getReadUser'SRoleAssignmentsAll(){return "ReadUser'SRoleAssignmentsAll";}
+// PingOne-Users : UserRoleAssignments : CreateUserRoleForPop
+@PostMapping("/environments/{{envID}}/users/{{userID}}/roleAssignments")
+  public String postCreateUserRoleForPop(){return "CreateUserRoleForPop";}
+// PingOne-Users : UserRoleAssignments : CreateUserRoleForEnv
+@PostMapping("/environments/{{envID}}/users/{{userID}}/roleAssignments")
+  public String postCreateUserRoleForEnv(){return "CreateUserRoleForEnv";}
+// PingOne-Users : UserRoleAssignments : CreateUserRoleForOrg
+@PostMapping("/environments/{{envID}}/users/{{userID}}/roleAssignments")
+  public String postCreateUserRoleForOrg(){return "CreateUserRoleForOrg";}
+// PingOne-Users : UserRoleAssignments : ReadUser'SRoleAssignmentOne
+@GetMapping("/environments/{{envID}}/users/{{userID}}/roleAssignments/{{roleAssignmentID}}")
+  public String getReadUser'SRoleAssignmentOne(){return "ReadUser'SRoleAssignmentOne";}
+// PingOne-Users : UserRoleAssignments : DeleteUser'SRoleAssignment
+@DeleteMapping("/environments/{{envID}}/users/{{userID}}/roleAssignments/{{roleAssignmentID}}")
+  public String deleteDeleteUser'SRoleAssignment(){return "DeleteUser'SRoleAssignment";}
+//------------------PingOne-UsersPairingKeys
+// PingOne-Users : PairingKeys : CreatePairingKey
+@PostMapping("/environments/{{envID}}/users/{{userID}}/pairingKeys")
+  public String postCreatePairingKey(){return "CreatePairingKey";}
+// PingOne-Users : PairingKeys : ReadOnePairingKey
+@GetMapping("/environments/{{envID}}/users/{{userID}}/pairingKeys/{{pairingKeyID}}")
+  public String getReadOnePairingKey(){return "ReadOnePairingKey";}
+// PingOne-Users : PairingKeys : DeletePairingKey
+@DeleteMapping("/environments/{{envID}}/users/{{userID}}/pairingKeys/{{pairingKeyID}}")
+  public String deleteDeletePairingKey(){return "DeletePairingKey";}
+

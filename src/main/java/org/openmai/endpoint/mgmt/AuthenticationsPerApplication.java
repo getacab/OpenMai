@@ -11,27 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
-public class MFASettings {
+public class AuthenticationsPerApplication {
 
 	@Autowired
 	@Qualifier("maiRequest")
 	private MAIRequest maiRequest;
 
-// PingOne-MFA Settings : GetMfaSettings
-	@GetMapping("/environments/{{envID}}/mfaSettings")
-	public String getGetMfaSettings() {
-		return "GetMfaSettings";
+	// PingOne-Authentications per Application : ReadAuthenticationsPerApplication
+	@GetMapping("/environments/{{envID}}/applicationSignons?limit=10&samplePeriod=1&samplePeriodCount=10&filter=occurredAtge")
+	public String getReadAuthenticationsPerApplication() {
+		return "ReadAuthenticationsPerApplication";
 	}
 
-// PingOne-MFA Settings : UpdateMfaSettings
-	@PutMapping("/environments/{{envID}}/mfaSettings")
-	public String putUpdateMfaSettings() {
-		return "UpdateMfaSettings";
-	}
-
-// PingOne-MFA Settings : DeleteResetMfaSettings
-	@DeleteMapping("/environments/{{envID}}/mfaSettings")
-	public String deleteDeleteResetMfaSettings() {
-		return "DeleteResetMfaSettings";
-	}
 }
