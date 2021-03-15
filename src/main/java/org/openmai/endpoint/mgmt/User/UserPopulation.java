@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,18 +18,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserPopulation{
-    @Autowired
-	MAIRequest maiRequest;
 
-    @GetMapping("/environments/{envID}/users/{userID}/population")
-	public String readUserPopulation(@PathVariable String envID) {
-		return "readUserPopulation";
+	@Autowired
+	@Qualifier("maiRequest")
+	private MAIRequest maiRequest;
+
+	// PingOne-Users : UserPopulations : ReadUserPopulation
+	@GetMapping("/environments/{{envID}}/users/{{userID}}/population")
+	public String getReadUserPopulation() {
+		return "ReadUserPopulation";
 	}
 
-    @PutMapping("/environments/{envID}/users/{userID}/population")
-	String updateUserPopulation() {
-		return "updateUserPopulation";
+	// PingOne-Users : UserPopulations : UpdateUserPopulation
+	@PutMapping("/environments/{{envID}}/users/{{userID}}/population")
+	public String putUpdateUserPopulation() {
+		return "UpdateUserPopulation";
 	}
-    
-    
+
 }

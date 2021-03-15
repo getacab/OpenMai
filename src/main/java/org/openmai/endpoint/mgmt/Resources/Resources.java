@@ -15,36 +15,38 @@ import org.openmai.interceptors.RequestHandler;
 import org.openmai.beans.MAIRequest;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController 
 public class Resources{
-    @Autowired
-	MAIRequest maiRequest;
 
-    //  Get...
-    @GetMapping("/environments/{envID}/resources")
-	public String readAllResources() {
-		return "readAllResources";
-	}
-    @GetMapping("/environments/{envID}/resources/{resourceID}")
-	public String readOneResources() {
-		return "readOneResources";
+	// PingOne-Resources : Resources : CreateResource
+	@PostMapping("/environments/{{envID}}/resources")
+	public String postCreateResource() {
+		return "CreateResource";
 	}
 
-    //  Post..
-    @PostMapping("/environments/{envID}/resources")
-	String createResources() {
-		return "createResources";
+	// PingOne-Resources : Resources : ReadAllResources
+	@GetMapping("/environments/{{envID}}/resources")
+	public String getReadAllResources() {
+		return "ReadAllResources";
 	}
 
-    //  Put & Delete
-    @PutMapping("/environments/{envID}/resources/{resourceID}")
-	String updateResources() {
-		return "updateResources";
+	// PingOne-Resources : Resources : ReadOneResource
+	@GetMapping("/environments/{{envID}}/resources/{{resourceID}}")
+	public String getReadOneResource() {
+		return "ReadOneResource";
 	}
 
-    @DeleteMapping("/environments/{envID}/resources/{resourceID}")
-	String deleteResources() {
-		return "deleteResources";
+	// PingOne-Resources : Resources : UpdateResource
+	@PutMapping("/environments/{{envID}}/resources/{{resourceID}}")
+	public String putUpdateResource() {
+		return "UpdateResource";
 	}
+
+	// PingOne-Resources : Resources : DeleteResource
+	@DeleteMapping("/environments/{{envID}}/resources/{{resourceID}}")
+	public String deleteDeleteResource() {
+		return "DeleteResource";
+	}
+
 
 }

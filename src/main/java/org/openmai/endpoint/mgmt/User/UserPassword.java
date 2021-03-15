@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,41 +17,45 @@ import org.openmai.beans.MAIRequest;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserPassword{
-    @Autowired
-	MAIRequest maiRequest;
+public class UserPassword {
+	@Autowired
+	@Qualifier("maiRequest")
+	private MAIRequest maiRequest;
 
-    //  Get...
-    @GetMapping("/environments/{envID}/users/{userID}/password")
-	public String readPasswordState(@PathVariable String envID) {
-		return "readPasswordState";
+	// PingOne-Users : UserPasswords : ReadPasswordState
+	@GetMapping("/environments/{{envID}}/users/{{userID}}/password")
+	public String getReadPasswordState() {
+		return "ReadPasswordState";
 	}
 
-    //  POst...    
-    @PostMapping("/passwordChecknUnlock/environments/{envID}/users/{userID}/password")
-	String passwordChecknUnlock() {
-		return "passwordChecknUnlock";
+	// PingOne-Users : UserPasswords : PasswordCheck
+	@PostMapping("/environments/{{envID}}/users/{{userID}}/password")
+	public String postPasswordCheck() {
+		return "PasswordCheck";
 	}
 
-    @PostMapping("/passwordRecover/environments/{envID}/users/{userID}/password")
-	String passwordRecover() {
-		return "passwordRecover";
+	// PingOne-Users : UserPasswords : PasswordUnlock
+	//??@PostMapping("/environments/{{envID}}/users/{{userID}}/password")
+	public String postPasswordUnlock() {
+		return "PasswordUnlock";
 	}
 
-    @PostMapping("/passwordLockedOut/environments/{envID}/users/{userID}/password")
-	String passwordLockedOut() {
-		return "passwordLockedOut";
+	// PingOne-Users : UserPasswords : UpdatePasswordSelf
+	//??@PutMapping("/environments/{{envID}}/users/{{userID}}/password")
+	public String putUpdatePasswordSelf() {
+		return "UpdatePasswordSelf";
 	}
 
-    //  Put...
-    @PutMapping("/updatePasswordSelfnAdmin/environments/{envID}/users/{userID}/password")
-	String updatePasswordSelfnAdmin() {
-		return "updatePasswordSelfnAdmin";
+	// PingOne-Users : UserPasswords : UpdatePasswordAdmin
+	//??@PutMapping("/environments/{{envID}}/users/{{userID}}/password")
+	public String putUpdatePasswordAdmin() {
+		return "UpdatePasswordAdmin";
 	}
 
-    @PutMapping("/updatePasswordSet/environments/{envID}/users/{userID}/password")
-	String updatePasswordSet() {
-		return "updatePasswordSet";
+	// PingOne-Users : UserPasswords : UpdatePasswordSet
+	@PutMapping("/environments/{{envID}}/users/{{userID}}/password")
+	public String putUpdatePasswordSet() {
+		return "UpdatePasswordSet";
 	}
-    
+
 }

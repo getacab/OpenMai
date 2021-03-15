@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,18 +18,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class EnableUsers{
-    @Autowired
-	MAIRequest maiRequest;
 
-    @GetMapping("/environments/{envID}/users/{userID}/enabled")
-	public String readUserEnabled(@PathVariable String envID, @PathVariable String flowID) {
-		return "readUserEnabled";
+	@Autowired
+	@Qualifier("maiRequest")
+	private MAIRequest maiRequest;
+
+	// PingOne-Users : EnableUsers : ReadUserEnabled
+	@GetMapping("/environments/{{envID}}/users/{{userID}}/enabled")
+	public String getReadUserEnabled() {
+		return "ReadUserEnabled";
 	}
 
-    @PutMapping("/environments/{envID}/users/{userID}/enabled")
-	String updateUserEnabled() {
-		return "updateUserEnabled";
+	// PingOne-Users : EnableUsers : UpdateUserEnabled
+	@PutMapping("/environments/{{envID}}/users/{{userID}}/enabled")
+	public String putUpdateUserEnabled() {
+		return "UpdateUserEnabled";
 	}
 
-    
+   
 }

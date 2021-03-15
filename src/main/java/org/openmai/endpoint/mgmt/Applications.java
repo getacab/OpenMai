@@ -34,13 +34,13 @@ public class Applications {
 	}
 
 	// PingOne-Applications : Applications : CreateApplicationOidc
-	@PostMapping("{{apiPath}}/environments/{{envID}}/applications")
+	//??@PostMapping("{{apiPath}}/environments/{{envID}}/applications")
 	public String postCreateApplicationOidc() {
 		return "CreateApplicationOidc";
 	}
 
 	// PingOne-Applications : Applications : CreateApplicationSaml
-	@PostMapping("{{apiPath}}/environments/{{envID}}/applications")
+	//??@PostMapping("{{apiPath}}/environments/{{envID}}/applications")
 	public String postCreateApplicationSaml() {
 		return "CreateApplicationSaml";
 	}
@@ -64,7 +64,7 @@ public class Applications {
 	}
 
 	// PingOne-Applications : Applications : CreateApplicationSaml-UrlImport
-	@PostMapping("/{{envID}}/applications")
+	//??@PostMapping("/{{envID}}/applications")
 	public String postCreateApplicationSamlUrlImport() {
 		return "CreateApplicationSaml-UrlImport";
 	}

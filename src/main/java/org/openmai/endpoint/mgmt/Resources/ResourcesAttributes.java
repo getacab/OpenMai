@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,34 +18,39 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ResourcesAttributes{
-    @Autowired
-	MAIRequest maiRequest;
+	@Autowired
+	@Qualifier("maiRequest")
+	private MAIRequest maiRequest;
 
-    //  Get...
-    @GetMapping("/environments/{envID}/resources/{resourceID}/attributes")
-	public String readAllResourcesAttributes() {
-		return "readAllResourcesAttributes";
-	}
-    @GetMapping("/environments/{envID}/resources/{resourceID}/attributes/{resourceAttrID}")
-	public String readOneResourcesAttributes() {
-		return "readOneResourcesAttributes";
+	// PingOne-Resources : ResourceAttributes : CreateResourceAttribute
+	@PostMapping("/environments/{{envID}}/resources/{{resourceID}}/attributes")
+	public String postCreateResourceAttribute() {
+		return "CreateResourceAttribute";
 	}
 
-    //  Post..
-    @PostMapping("/environments/{envID}/resources/{resourceID}/attributes")
-	String createResourcesAttributes() {
-		return "createResourcesAttributes";
+	// PingOne-Resources : ResourceAttributes : ReadAllResourceAttributes
+	@GetMapping("/environments/{{envID}}/resources/{{resourceID}}/attributes")
+	public String getReadAllResourceAttributes() {
+		return "ReadAllResourceAttributes";
 	}
 
-    //  Put & Delete
-    @PutMapping("/environments/{envID}/resources/{resourceID}/attributes/{resourceAttrID}")
-	String updateResourcesAttributes() {
-		return "updateResourcesAttributes";
+	// PingOne-Resources : ResourceAttributes : ReadOneResourceAttribute
+	@GetMapping("/environments/{{envID}}/resources/{{resourceID}}/attributes/{{resourceAttrID}}")
+	public String getReadOneResourceAttribute() {
+		return "ReadOneResourceAttribute";
 	}
 
-    @DeleteMapping("/environments/{envID}/resources/{resourceID}/attributes/{resourceAttrID}")
-	String deleteResourcesAttributes() {
-		return "deleteResourcesAttributes";
+	// PingOne-Resources : ResourceAttributes : UpdateResourceAttribute
+	@PutMapping("/environments/{{envID}}/resources/{{resourceID}}/attributes/{{resourceAttrID}}")
+	public String putUpdateResourceAttribute() {
+		return "UpdateResourceAttribute";
 	}
+
+	// PingOne-Resources : ResourceAttributes : DeleteResourceAttribute
+	@DeleteMapping("/environments/{{envID}}/resources/{{resourceID}}/attributes/{{resourceAttrID}}")
+	public String deleteDeleteResourceAttribute() {
+		return "DeleteResourceAttribute";
+	}
+
 
 }

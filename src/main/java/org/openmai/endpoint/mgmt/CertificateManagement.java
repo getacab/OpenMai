@@ -42,7 +42,7 @@ public class CertificateManagement {
 	}
 
 // PingOne-Certificate Management : CreateKeyWithPkcs12File
-	@PostMapping("/environments/{{envID}}/keys")
+	//??@PostMapping("/environments/{{envID}}/keys")
 	public String postCreateKeyWithPkcs12File() {
 		return "CreateKeyWithPkcs12File";
 	}

@@ -17,37 +17,37 @@ public class ApplicationPushCredentials {
 	private MAIRequest maiRequest;
 
 	// PingOne-Applications : ApplicationPushCredentials : ReadAllCredentials
-	@GetMapping("{{apiPath}}/environments/{{envID}}/applications/{{appID}}/pushCredentials")
+	@GetMapping("/environments/{{envID}}/applications/{{appID}}/pushCredentials")
 	public String getReadAllCredentials() {
 		return "ReadAllCredentials";
 	}
 
 	// PingOne-Applications : ApplicationPushCredentials : ReadOneCredential
-	@GetMapping("{{apiPath}}/environments/{{envID}}/applications/{{appID}}/pushCredentials/{{pushCredID}}")
+	@GetMapping("/environments/{{envID}}/applications/{{appID}}/pushCredentials/{{pushCredID}}")
 	public String getReadOneCredential() {
 		return "ReadOneCredential";
 	}
 
 	// PingOne-Applications : ApplicationPushCredentials : DeleteCredential
-	@DeleteMapping("{{apiPath}}/environments/{{envID}}/applications/{{appID}}/pushCredentials/{{pushCredID}}")
+	@DeleteMapping("/environments/{{envID}}/applications/{{appID}}/pushCredentials/{{pushCredID}}")
 	public String deleteDeleteCredential() {
 		return "DeleteCredential";
 	}
 
 	// PingOne-Applications : ApplicationPushCredentials : CreatePushCredentialApns
-	@PostMapping("{{apiPath}}/environments/{{envID}}/applications/{{appID}}/pushCredentials")
+	@PostMapping("/environments/{{envID}}/applications/{{appID}}/pushCredentials")
 	public String postCreatePushCredentialApns() {
 		return "CreatePushCredentialApns";
 	}
 
 	// PingOne-Applications : ApplicationPushCredentials : CreatePushCredentialFcm
-	@PostMapping("{{apiPath}}/environments/{{envID}}/applications/{{appID}}/pushCredentials")
+	//??@PostMapping("/environments/{{envID}}/applications/{{appID}}/pushCredentials")
 	public String postCreatePushCredentialFcm() {
 		return "CreatePushCredentialFcm";
 	}
 
 	// PingOne-Applications : ApplicationPushCredentials : UpdatePushCredential
-	@PutMapping("{{apiPath}}/environments/{{envID}}/applications/{{appID}}/pushCredentials/{{pushCredID}}")
+	@PutMapping("/environments/{{envID}}/applications/{{appID}}/pushCredentials/{{pushCredID}}")
 	public String putUpdatePushCredential() {
 		return "UpdatePushCredential";
 	}

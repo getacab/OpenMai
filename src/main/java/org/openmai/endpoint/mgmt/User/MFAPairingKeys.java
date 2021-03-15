@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,22 +18,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MFAPairingKeys{
-    @Autowired
-	MAIRequest maiRequest;
+	@Autowired
+	@Qualifier("maiRequest")
+	private MAIRequest maiRequest;
 
-    @GetMapping("/environments/{envID}/users/{userID}/pairingKeys/{pairingKeyID}")
-	public String readOneMFAPairing() {
-		return "ReadOneMFAPairing";
+	// PingOne-Users : PairingKeys : CreatePairingKey
+	@PostMapping("/environments/{{envID}}/users/{{userID}}/pairingKeys")
+	public String postCreatePairingKey() {
+		return "CreatePairingKey";
 	}
 
-    @PostMapping("/environments/{envID}/users/{userID}/pairingKeys")
-	String createMFAPairing() {
-		return "create MFA User Devices";
+	// PingOne-Users : PairingKeys : ReadOnePairingKey
+	@GetMapping("/environments/{{envID}}/users/{{userID}}/pairingKeys/{{pairingKeyID}}")
+	public String getReadOnePairingKey() {
+		return "ReadOnePairingKey";
 	}
 
-    @DeleteMapping("/environments/{envID}/users/{userID}/pairingKeys/{pairingKeyID}")
-	String deleteMFAPairing() {
-		return "deleteMFAPairing";
-	}    
-    
+	// PingOne-Users : PairingKeys : DeletePairingKey
+	@DeleteMapping("/environments/{{envID}}/users/{{userID}}/pairingKeys/{{pairingKeyID}}")
+	public String deleteDeletePairingKey() {
+		return "DeletePairingKey";
+	}
+
+   
 }

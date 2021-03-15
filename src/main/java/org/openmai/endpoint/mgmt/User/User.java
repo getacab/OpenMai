@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,52 +18,51 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class User{
-    @Autowired
-	MAIRequest maiRequest;
-	
-	@GetMapping("/{envID}/users")
-	public String readAllUser() {
-		return "Read All User";
+
+	@Autowired
+	@Qualifier("maiRequest")
+	private MAIRequest maiRequest;
+
+	// PingOne-Users : Users : CreateUser
+	@PostMapping("/environments/{{envID}}/users")
+	public String postCreateUser() {
+		return "CreateUser";
 	}
 
-    @GetMapping("/{envID}/users/{userID}")
-	public String readOneUser(@PathVariable String envID, @PathVariable String flowID , @PathVariable String userID) {
-		return "Read One User";
-	}
-    //  Confusing Content-type Below...
-    @PostMapping("/Content/{envID}/users")
-	String createUser() {
-		return "createUser";
+	// PingOne-Users : Users : CreateUserImport
+	//??@PostMapping("/environments/{{envID}}/users")
+	public String postCreateUserImport() {
+		return "CreateUserImport";
 	}
 
-    @PostMapping("/createUserImport/{envID}/users")
-	String createUserImport() {
-		return "createUserImport";
+	// PingOne-Users : Users : ReadAllUsers
+	@GetMapping("/environments/{{envID}}/users")
+	public String getReadAllUsers() {
+		return "ReadAllUsers";
 	}
 
-    @PostMapping("/verifyUser/{envID}/users/{userID}")
-	String verifyUser() {
-		return "verifyUser";
+	// PingOne-Users : Users : ReadOneUser
+	@GetMapping("/environments/{{envID}}/users/{{userID}}")
+	public String getReadOneUser() {
+		return "ReadOneUser";
 	}
 
-    @PostMapping("/sendResendVerificationCode/{envID}/user/{userID}")
-	String sendResendVerificationCode() {
-		return "sendResendVerificationCode";
+	// PingOne-Users : Users : UpdateUserPatch
+	@PatchMapping("/environments/{{envID}}/users/{{userID}}")
+	public String patchUpdateUserPatch() {
+		return "UpdateUserPatch";
 	}
 
-    @PatchMapping("/{envID}/users/{userID}")
-	String updateUserPatch() {
-		return "updateUserPatch";
+	// PingOne-Users : Users : UpdateUserPut
+	@PutMapping("/environments/{{envID}}/users/{{userID}}")
+	public String putUpdateUserPut() {
+		return "UpdateUserPut";
 	}
 
-    @PutMapping("/{envID}/users/{userID}")
-	String updateUserPut() {
-		return "updateUserPut";
-	}
-
-    @DeleteMapping("/{envID}/users/{userID}")
-	String deleteUser() {
-		return "deleteUser";
+	// PingOne-Users : Users : DeleteUser
+	@DeleteMapping("/environments/{{envID}}/users/{{userID}}")
+	public String deleteDeleteUser() {
+		return "DeleteUser";
 	}
 
 

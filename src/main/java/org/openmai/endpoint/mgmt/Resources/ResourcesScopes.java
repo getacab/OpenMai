@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,34 +18,39 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ResourcesScopes{
-    @Autowired
-	MAIRequest maiRequest;
+	@Autowired
+	@Qualifier("maiRequest")
+	private MAIRequest maiRequest;
 
-    //  Get...
-    @GetMapping("/environments/{envID}/resources/{resourceID}/scopes")
-	public String readAllResourcesScopes() {
-		return "readAllResourcesScopes";
-	}
-    @GetMapping("/environments/{envID}/resources/{resourceID}/scopes/{scopeID}")
-	public String readOneResourcesScopes() {
-		return "readOneResourcesScopes";
+	// PingOne-Resources : ResourceScopes : CreateScope
+	@PostMapping("/environments/{{envID}}/resources/{{resourceID}}/scopes")
+	public String postCreateScope() {
+		return "CreateScope";
 	}
 
-    //  Post..
-    @PostMapping("/environments/{envID}/resources/{resourceID}/scopes")
-	String createResourcesScopes() {
-		return "createResourcesScopes";
+	// PingOne-Resources : ResourceScopes : ReadAllScopesResource
+	@GetMapping("/environments/{{envID}}/resources/{{resourceID}}/scopes")
+	public String getReadAllScopesResource() {
+		return "ReadAllScopesResource";
 	}
 
-    //  Put & Delete
-    @PutMapping("/environments/{envID}/resources/{resourceID}/scopes/{scopeID}")
-	String updateResourcesScopes() {
-		return "updateResourcesScopes";
+	// PingOne-Resources : ResourceScopes : ReadOneScope
+	@GetMapping("/environments/{{envID}}/resources/{{resourceID}}/scopes/{{scopeID}}")
+	public String getReadOneScope() {
+		return "ReadOneScope";
 	}
 
-    @DeleteMapping("/environments/{envID}/resources/{resourceID}/scopes/{scopeID}")
-	String deleteResourcesScopes() {
-		return "deleteResourcesScopes";
+	// PingOne-Resources : ResourceScopes : UpdateScope
+	@PutMapping("/environments/{{envID}}/resources/{{resourceID}}/scopes/{{scopeID}}")
+	public String putUpdateScope() {
+		return "UpdateScope";
 	}
+
+	// PingOne-Resources : ResourceScopes : DeleteScope
+	@DeleteMapping("/environments/{{envID}}/resources/{{resourceID}}/scopes/{{scopeID}}")
+	public String deleteDeleteScope() {
+		return "DeleteScope";
+	}
+
 
 }

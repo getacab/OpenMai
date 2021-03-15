@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,23 +18,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LinkedAccount{
-    @Autowired
-	MAIRequest maiRequest;
 
-    @GetMapping("/environments/{envID}/users/{userID}/linkedAccounts")
-	public String readLinkedAccount(@PathVariable String envID) {
-		return "readLinkedAccount";
+	@Autowired
+	@Qualifier("maiRequest")
+	private MAIRequest maiRequest;
+
+	// PingOne-Users : LinkedAccounts : ReadLinkedAccounts
+	@GetMapping("/environments/{{envID}}/users/{{userID}}/linkedAccounts")
+	public String getReadLinkedAccounts() {
+		return "ReadLinkedAccounts";
 	}
 
-    @GetMapping("/environments/{envID}/users/{userID}/linkedAccounts/{linkedAccountID}")
-	public String readOneLinkedAccount(@PathVariable String envID, @PathVariable String flowID) {
-		return "readOneLinkedAccount";
+	// PingOne-Users : LinkedAccounts : ReadOneLinkedAccount
+	@GetMapping("/environments/{{envID}}/users/{{userID}}/linkedAccounts/{{linkedAccountID}}")
+	public String getReadOneLinkedAccount() {
+		return "ReadOneLinkedAccount";
 	}
 
-    @DeleteMapping("/environments/{envID}/users/{userID}/linkedAccounts/{linkedAccountID}")
-	String deleteLinkedAccount() {
-		return "deleteLinkedAccount";
+	// PingOne-Users : LinkedAccounts : DeleteLinkedAccount
+	@DeleteMapping("/environments/{{envID}}/users/{{userID}}/linkedAccounts/{{linkedAccountID}}")
+	public String deleteDeleteLinkedAccount() {
+		return "DeleteLinkedAccount";
 	}
-    
-    
+
+   
 }

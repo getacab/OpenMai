@@ -1,9 +1,10 @@
-package org.openmai.endpoint.mgmt.Notifications;
+package org.openmai.endpoint.mgmt.Notifications; 
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,24 +18,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Settings{
-    @Autowired
-	MAIRequest maiRequest;
 
-    //  Get...
-    @GetMapping("/environments/{envID}/notificationsSettings")
-	public String readNotificationSettings() {
-		return "readNotificationSettings";
+	@Autowired
+	@Qualifier("maiRequest")
+	private MAIRequest maiRequest;
+
+	// ------------------PingOne-NotificationsNotificationssettings
+	// PingOne-Notifications : Notificationssettings : ReadNotificationsSettings
+	@GetMapping("/environments/{{envID}}/notificationsSettings")
+	public String getReadNotificationsSettings() {
+		return "ReadNotificationsSettings";
 	}
 
-    //  Put & Delete
-    @PutMapping("/environments/{envID}/notificationsSettings")
-	String updateNotificationSettings() {
-		return "updateNotificationSettings";
+	// PingOne-Notifications : Notificationssettings : UpdateNotificationsSettings
+	@PutMapping("/environments/{{envID}}/notificationsSettings")
+	public String putUpdateNotificationsSettings() {
+		return "UpdateNotificationsSettings";
 	}
 
-    @DeleteMapping("/environments/{envID}/notificationsSettings")
-	String deleteNotificationSettings() {
-		return "deleteNotificationSettings";
+	// PingOne-Notifications : Notificationssettings : DeleteNotificationsSettings
+	@DeleteMapping("/environments/{{envID}}/notificationsSettings")
+	public String deleteDeleteNotificationsSettings() {
+		return "DeleteNotificationsSettings";
 	}
+
 
 }

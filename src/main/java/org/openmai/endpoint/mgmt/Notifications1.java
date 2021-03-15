@@ -9,19 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+//??@RestController
 
-public class Notifications {
+public class Notifications1 {
 
 	@Autowired
 	@Qualifier("maiRequest")
 	private MAIRequest maiRequest;
 
-	// PingOne-Notifications : Templates : ReadAllTemplates
-	@GetMapping("/environments/{{envID}}/templates")
-	public String getReadAllTemplates() {
-		return "ReadAllTemplates";
-	}
 
 	// PingOne-Notifications : Templates : ReadOneTemplate
 	@GetMapping("/environments/{{envID}}/templates/{{templateName}}")

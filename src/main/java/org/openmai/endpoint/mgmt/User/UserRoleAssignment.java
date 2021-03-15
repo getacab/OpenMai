@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,31 +18,44 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserRoleAssignment{
-    @Autowired
-	MAIRequest maiRequest;
+	@Autowired
+	@Qualifier("maiRequest")
+	private MAIRequest maiRequest;
 
-    //  Get...
-    @GetMapping("/environments/{envID}/users/{userID}/roleAssignments")
-	public String readRoleAssignment() {
-		return "readOneRoleAssignment";
-	}
-
-    @GetMapping("/environments/{envID}/users/{userID}/roleAssignments/{roleAssignmentID}")
-	public String readOneRoleAssignment() {
-		return "readOneRoleAssignment";
-	}
-    
-    
-    //  Post...
-    @PostMapping("/ping/environments/{envID}/users/{userID}/roleAssignments")
-	String createUserRoleAssignment() {
-		return "createUserRoleAssignment";
+	// PingOne-Users : UserRoleAssignments : ReadUser'SRoleAssignmentsAll
+	@GetMapping("/environments/{{envID}}/users/{{userID}}/roleAssignments")
+	public String getReadUserRoleAssignmentsAll() {
+		return "ReadUsersRoleAssignmentsAll";
 	}
 
-    //  Delete...
-    @DeleteMapping("/environments/{envID}/users/{userID}/roleAssignments/{roleAssignmentID}")
-	String deleteUserRoleAssignment() {
-		return "deleteUserRoleAssignment";
+	// PingOne-Users : UserRoleAssignments : CreateUserRoleForPop
+	//??@PostMapping("/environments/{{envID}}/users/{{userID}}/roleAssignments")
+	public String postCreateUserRoleForPop() {
+		return "CreateUserRoleForPop";
 	}
-    
+
+	// PingOne-Users : UserRoleAssignments : CreateUserRoleForEnv
+	@PostMapping("/environments/{{envID}}/users/{{userID}}/roleAssignments")
+	public String postCreateUserRoleForEnv() {
+		return "CreateUserRoleForEnv";
+	}
+
+	// PingOne-Users : UserRoleAssignments : CreateUserRoleForOrg
+	//??@PostMapping("/environments/{{envID}}/users/{{userID}}/roleAssignments")
+	public String postCreateUserRoleForOrg() {
+		return "CreateUserRoleForOrg";
+	}
+
+	// PingOne-Users : UserRoleAssignments : ReadUser'SRoleAssignmentOne
+	@GetMapping("/environments/{{envID}}/users/{{userID}}/roleAssignments/{{roleAssignmentID}}")
+	public String getReadUsersRoleAssignmentOne() {
+		return "ReadUsersRoleAssignmentOne";
+	}
+
+	// PingOne-Users : UserRoleAssignments : DeleteUser'SRoleAssignment
+	@DeleteMapping("/environments/{{envID}}/users/{{userID}}/roleAssignments/{{roleAssignmentID}}")
+	public String deleteDeleteUsersRoleAssignment() {
+		return "DeleteUsersRoleAssignment";
+	}
+   
 }

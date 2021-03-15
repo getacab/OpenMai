@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,17 +18,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class EnableUsersMFA{
-    @Autowired
-	MAIRequest maiRequest;
+	@Autowired
+	@Qualifier("maiRequest")
+	private MAIRequest maiRequest;
 
-    @GetMapping("/environments/{envID}/users/{userID}/mfaEnabled")
-	public String readUserMFAEnabled(@PathVariable String envID, @PathVariable String flowID) {
-		return "readUserMFAEnabled";
+	// PingOne-Users : EnableUsersMfa : ReadUserMfaEnabled
+	@GetMapping("/environments/{{envID}}/users/{{userID}}/mfaEnabled")
+	public String getReadUserMfaEnabled() {
+		return "ReadUserMfaEnabled";
 	}
 
-    @PutMapping("/environments/{envID}/users/{userID}/mfaEnabled")
-	String updateUserMFAEnabled() {
-		return "readUserMFAEnabled";
+	// PingOne-Users : EnableUsersMfa : UpdateUserMfaEnabled
+	@PutMapping("/environments/{{envID}}/users/{{userID}}/mfaEnabled")
+	public String putUpdateUserMfaEnabled() {
+		return "UpdateUserMfaEnabled";
 	}
+
     
 }
