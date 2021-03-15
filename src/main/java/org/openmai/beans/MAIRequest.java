@@ -17,7 +17,7 @@ public class MAIRequest implements Serializable {
 
 	public Map<String, String> headers = new HashMap<String, String>();
 	public Cookie[] cookies;
-	public Map<String, String> urlParms;
+	public Map<String, String[]> urlParms;
 	public JSONObject body;
 
 	public MAIRequest() {

@@ -60,16 +60,38 @@ public class RequestHandler implements HandlerInterceptor{
         if ("POST".equalsIgnoreCase(request.getMethod())) 
         {
             String jsonString = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-			System.out.println(jsonString);
+			//System.out.println(jsonString);
 			JSONObject jsonBody= new JSONObject(jsonString);
 			myMai1.body = jsonBody;
         }
 
+		//	Fetching URL Params...
+		Map<String, String[]> urlParams = request.getParameterMap();
+		myMai1.urlParms = urlParams;
+		System.out.println("Comes here !");
+		for (String key : urlParams.keySet()) {
+			String[] strArr = (String[]) urlParams.get(key);
+			for (String val : strArr) {
+				System.out.println(key+" Array= " + val);
+			}
+		}
 		
 		String tmp = myMai1.headers.get("content-type");
 		
 		PingContentTypeXlation cmd = new PingContentTypeXlation(); 
-		String newPath = cmd.getCommand(myMai1.headers.get("content-type"));
+		String contentType = myMai1.headers.get("content-type");
+		String newPath;
+		if(contentType != null)
+		{
+			if(contentType.equals("text/plain") || contentType.equals("application/json"))
+				newPath = "";
+			else
+				newPath = cmd.getCommand(contentType);
+		}
+		else
+			newPath = "";
+
+		System.out.println("newPath: "+newPath);
     	String finalPath = path.replace("ping", newPath);
     	request.getRequestDispatcher(finalPath).forward(request,response);
     	return false;

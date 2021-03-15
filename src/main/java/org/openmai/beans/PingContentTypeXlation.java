@@ -8,7 +8,7 @@ public class PingContentTypeXlation {
 	Map<String, String> command =  new HashMap<>();
 	
 	public PingContentTypeXlation() {
-		
+	
         //      Flow...
         command.put("application/vnd.pingidentity.usernamePassword.check+json","checkUsernamePassword");
         command.put("application/vnd.pingidentity.user.lookup+json","signOnUsername");
@@ -41,7 +41,7 @@ public class PingContentTypeXlation {
         
         //      CustomDomains...
         command.put("application/vnd.pingidentity.domainName.verify+json", "verifyDomains");
-        
+        command.put("application/vnd.pingidentity.certificate.import+json", "importCertificates");
         
         //      Notifications/Email Address...
         command.put("application/vnd.pingidentity.trustedEmail.activate+json", "activateTrustedMail");
