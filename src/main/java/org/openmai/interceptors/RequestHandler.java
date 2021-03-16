@@ -34,15 +34,16 @@ public class RequestHandler implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		String path, newPath, contentType;
 
 		System.out.println("------------preHandle");
-        //ContentCachingRequestWrapper requestWrapper = (ContentCachingRequestWrapper) request;
-        String path=request.getRequestURI();
+        path=request.getRequestURI();
         if(!path.contains("ping")) {
         	return true;
         }
         myMai1.doNothing();
         
+		//	Fetching Cookies & headers...
 		Cookie[] cookies = request.getCookies();
         Enumeration<String> headerNames = request.getHeaderNames();
         String headerName , headerContent;
@@ -57,10 +58,12 @@ public class RequestHandler implements HandlerInterceptor{
                 }
         }
         myMai1.headers = header;
+		myMai1.cookies = cookies;
+
+		//	Fetching Body Content...
         if ("POST".equalsIgnoreCase(request.getMethod())) 
         {
             String jsonString = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-			//System.out.println(jsonString);
 			JSONObject jsonBody= new JSONObject(jsonString);
 			myMai1.body = jsonBody;
         }
@@ -68,7 +71,6 @@ public class RequestHandler implements HandlerInterceptor{
 		//	Fetching URL Params...
 		Map<String, String[]> urlParams = request.getParameterMap();
 		myMai1.urlParms = urlParams;
-		System.out.println("Comes here !");
 		for (String key : urlParams.keySet()) {
 			String[] strArr = (String[]) urlParams.get(key);
 			for (String val : strArr) {
@@ -76,26 +78,16 @@ public class RequestHandler implements HandlerInterceptor{
 			}
 		}
 		
-		String tmp = myMai1.headers.get("content-type");
 		
 		PingContentTypeXlation cmd = new PingContentTypeXlation(); 
-		String contentType = myMai1.headers.get("content-type");
-		String newPath;
-		if(contentType != null)
-		{
-			if(contentType.equals("text/plain") || contentType.equals("application/json"))
-				newPath = "";
-			else
-				newPath = cmd.getCommand(contentType);
-		}
-		else
+		contentType = myMai1.headers.get("content-type");
+		if(contentType == null)
 			newPath = "";
-
-		System.out.println("newPath: "+newPath);
+		else
+			newPath = cmd.getCommand(contentType);
     	String finalPath = path.replace("ping", newPath);
     	request.getRequestDispatcher(finalPath).forward(request,response);
     	return false;
-		//return HandlerInterceptor.super.preHandle(requestWrapper, response, handler);
 	}
 
 	@Override

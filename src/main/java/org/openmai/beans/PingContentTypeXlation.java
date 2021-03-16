@@ -9,6 +9,9 @@ public class PingContentTypeXlation {
 	
 	public PingContentTypeXlation() {
 	
+        command.put("application/json", "");
+        command.put("text/plain", "");
+
         //      Flow...
         command.put("application/vnd.pingidentity.usernamePassword.check+json","checkUsernamePassword");
         command.put("application/vnd.pingidentity.user.lookup+json","signOnUsername");
@@ -27,7 +30,6 @@ public class PingContentTypeXlation {
         //      Management API...       //
         //      User...
         command.put("application/vnd.pingidentity.user.import+json","createUserImport");
-        command.put("application/json", "Content");
         command.put("application/vnd.pingidentity.user.verify+json", "verifyUser");
         command.put("application/vnd.pingidentity.user.sendVerificationCode+json", "sendResendVerificationCode");
         

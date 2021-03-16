@@ -31,7 +31,6 @@ public class MAIRequest implements Serializable {
 
 
         //      Headers Extraction...
-
         Enumeration<String> headerNames = request.getHeaderNames();
         String headerName , headerContent;
         Map<String, String> header = new HashMap<String , String>();
@@ -40,32 +39,20 @@ public class MAIRequest implements Serializable {
                 {
                     headerName = headerNames.nextElement();
                     headerContent = request.getHeader(headerName);
-                    //System.out.println(headerName + " : " + headerContent);
                     header.put(headerName, headerContent);
                 }
         }
 
         //  Cookies Extraction...
-        Cookie[] cookies = request.getCookies();
-        if(cookies!=null) {
-            //System.out.println("Cookies:");
-            for (Cookie cookie : cookies) {
-                //System.out.println(cookie);
-            }
-        }
-        
+        Cookie[] cookies = request.getCookies();        
 
 
         //  Body Json extraction...
         if ("POST".equalsIgnoreCase(request.getMethod())) 
         {
             String jsonString = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-			//?String jsonString = new String(request.getContentAsByteArray());
-			//System.out.println("Body:");
-			//System.out.println(jsonString);
 			JSONObject jsonBody= new JSONObject(jsonString);
 			this.body = jsonBody;
-			//System.out.println(jsonObject.getString("email"));
         }
 
         this.headers = header;
